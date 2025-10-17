@@ -1,0 +1,53 @@
+{
+  "image_filename": "fine_lines_wrinkles_mild_20250928_151250_0031_flipped.png",
+  "skin_condition": "fine_lines_wrinkles",
+  "severity": "mild",
+  "generation_timestamp": "20250928_151250",
+  "image_counter": 31,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "mild",
+    "confidence_score": 0.75,
+    "affected_percentage": 0.03,
+    "feature_count": 3
+  },
+  "classification_targets": {
+    "acne": false,
+    "fine_lines_wrinkles": true,
+    "aging": false,
+    "hyperpigmentation": false,
+    "textured_skin": false,
+    "redness": false,
+    "pore_size": false
+  },
+  "severity_targets": {
+    "acne": "none",
+    "fine_lines_wrinkles": "mild",
+    "aging": "none",
+    "hyperpigmentation": "none",
+    "textured_skin": "none",
+    "redness": "none",
+    "pore_size": "none"
+  },
+  "demographics": {
+    "age_group": "adult",
+    "age_range": "26-40",
+    "skin_tone": "fair skin tone",
+    "gender": "female",
+    "variation_index": 1
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing portrait with full face clearly visible from chin to forehead, shoulders and upper chest included in frame, centered composition, eye-level camera angle, neutral background, even soft lighting, eyes open and looking at camera, no occlusions, no hands or objects blocking the face, proper distance from camera (not too close, not too far), high resolution, sharp focus on facial features, suitable for face detection algorithms. Apply the following specific skin details: Portrait showing a face with subtle fine lines around the outer eye corners, smooth skin texture, soft lighting. The person should be a adult female with fair skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "fine_lines_wrinkles_mild_20250928_151250_0031.png",
+  "flip_timestamp": "2025-09-30T19:30:59.265068"
+}

@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\textured_skin\\slight\\textured_skin_slight_20250930_221854_0265_flipped.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 104,
+        "y": 67,
+        "width": 730,
+        "height": 730,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

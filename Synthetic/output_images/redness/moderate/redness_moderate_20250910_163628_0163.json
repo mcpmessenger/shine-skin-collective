@@ -1,0 +1,50 @@
+{
+    "image_filename": "redness_moderate_20250910_163628_0163.png",
+    "skin_condition": "redness",
+    "severity": "moderate",
+    "generation_timestamp": "20250910_163628",
+    "image_counter": 163,
+    "training_annotations": {
+        "condition_detected": true,
+        "severity_level": "moderate",
+        "confidence_score": 0.88,
+        "affected_percentage": 0.16,
+        "feature_count": 0
+    },
+    "classification_targets": {
+        "acne": false,
+        "fine_lines_wrinkles": false,
+        "aging": false,
+        "hyperpigmentation": false,
+        "textured_skin": false,
+        "redness": true,
+        "pore_size": false
+    },
+    "severity_targets": {
+        "acne": "none",
+        "fine_lines_wrinkles": "none",
+        "aging": "none",
+        "hyperpigmentation": "none",
+        "textured_skin": "none",
+        "redness": "moderate",
+        "pore_size": "none"
+    },
+    "demographics": {
+        "age_group": "senior",
+        "age_range": "60+",
+        "skin_tone": "medium skin tone",
+        "gender": "male",
+        "variation_index": 3
+    },
+    "generation_details": {
+        "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing, entire head and shoulders visible, centered, eye-level camera, neutral background, evenly lit, eyes open, no occlusions, no hands or objects blocking the face. Apply the following specific skin details: Front-facing portrait with noticeable facial redness across cheeks and nose, a few visible superficial capillaries, realistic color variation, soft even lighting. The person should be a senior male with medium skin tone.",
+        "model_used": "models/gemini-2.0-flash-preview-image-generation",
+        "api_version": "gemini-2.0-flash-preview"
+    },
+    "quality_metrics": {
+        "image_resolution": "1024x1024",
+        "lighting_quality": "natural",
+        "pose_quality": "front-facing",
+        "occlusion_level": "none"
+    }
+}

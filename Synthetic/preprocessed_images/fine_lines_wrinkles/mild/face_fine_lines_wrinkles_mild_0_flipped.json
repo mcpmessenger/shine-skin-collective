@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\fine_lines_wrinkles\\mild\\fine_lines_wrinkles_mild_0_flipped.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 93,
+        "y": 218,
+        "width": 663,
+        "height": 663,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

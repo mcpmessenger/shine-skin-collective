@@ -1,0 +1,53 @@
+{
+  "image_filename": "aging_early_signs_20250928_151250_0066_flipped.png",
+  "skin_condition": "aging",
+  "severity": "early_signs",
+  "generation_timestamp": "20250928_151250",
+  "image_counter": 66,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "early_signs",
+    "confidence_score": 0.8,
+    "affected_percentage": 0.07,
+    "feature_count": 7
+  },
+  "classification_targets": {
+    "acne": false,
+    "fine_lines_wrinkles": false,
+    "aging": true,
+    "hyperpigmentation": false,
+    "textured_skin": false,
+    "redness": false,
+    "pore_size": false
+  },
+  "severity_targets": {
+    "acne": "none",
+    "fine_lines_wrinkles": "none",
+    "aging": "early_signs",
+    "hyperpigmentation": "none",
+    "textured_skin": "none",
+    "redness": "none",
+    "pore_size": "none"
+  },
+  "demographics": {
+    "age_group": "adult",
+    "age_range": "26-40",
+    "skin_tone": "brown skin tone",
+    "gender": "male",
+    "variation_index": 6
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing portrait with full face clearly visible from chin to forehead, shoulders and upper chest included in frame, centered composition, eye-level camera angle, neutral background, even soft lighting, eyes open and looking at camera, no occlusions, no hands or objects blocking the face, proper distance from camera (not too close, not too far), high resolution, sharp focus on facial features, suitable for face detection algorithms. Apply the following specific skin details: Portrait showing a face with some loss of elasticity, a few fine lines, and slight dullness, natural lighting. The person should be a adult male with brown skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "aging_early_signs_20250928_151250_0066.png",
+  "flip_timestamp": "2025-09-30T19:30:41.206550"
+}

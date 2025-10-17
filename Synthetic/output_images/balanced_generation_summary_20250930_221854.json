@@ -1,0 +1,14 @@
+{
+  "generation_timestamp": "20250930_221854",
+  "images_generated": 505,
+  "images_failed": 15,
+  "conditions_generated": [
+    "redness",
+    "pore_size",
+    "textured_skin",
+    "hyperpigmentation"
+  ],
+  "purpose": "balance_dataset",
+  "target_total_dataset_size": 1174,
+  "estimated_cost": 15.149999999999999
+}

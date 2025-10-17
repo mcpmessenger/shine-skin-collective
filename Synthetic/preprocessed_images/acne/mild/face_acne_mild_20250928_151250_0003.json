@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\acne\\mild\\acne_mild_20250928_151250_0003.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 91,
+        "y": 74,
+        "width": 759,
+        "height": 759,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

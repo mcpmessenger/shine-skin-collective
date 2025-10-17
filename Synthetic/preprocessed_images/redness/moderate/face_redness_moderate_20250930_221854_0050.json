@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\redness\\moderate\\redness_moderate_20250930_221854_0050.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 48,
+        "y": 222,
+        "width": 657,
+        "height": 657,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

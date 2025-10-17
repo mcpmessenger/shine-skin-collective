@@ -1,0 +1,15 @@
+{
+  "image_filename": "pore_size_severe_0_flipped.png",
+  "skin_condition": "pore_size",
+  "severity": "severe",
+  "annotations": {
+    "detected": true,
+    "percentage": 0.22,
+    "spot_count": 0,
+    "confidence": 0.92
+  },
+  "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Front-facing portrait with large, open pores prominently visible on the T-zone and cheeks; detailed yet natural texture, no blur, soft even lighting.",
+  "is_flipped": true,
+  "original_filename": "pore_size_severe_0.png",
+  "flip_timestamp": "2025-09-30T19:31:56.702783"
+}

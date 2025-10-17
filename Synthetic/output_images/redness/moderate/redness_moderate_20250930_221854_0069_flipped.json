@@ -1,0 +1,34 @@
+{
+  "image_filename": "redness_moderate_20250930_221854_0069_flipped.png",
+  "skin_condition": "redness",
+  "severity": "moderate",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "18-25",
+    "age_group": "young adult",
+    "skin_tone": "very fair skin tone (Fitzpatrick I)",
+    "gender": "person"
+  },
+  "classification_targets": {
+    "redness": true,
+    "pore_size": false,
+    "textured_skin": false,
+    "hyperpigmentation": false
+  },
+  "severity_targets": {
+    "redness": "moderate",
+    "pore_size": "none",
+    "textured_skin": "none",
+    "hyperpigmentation": "none"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "moderate",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single person, young adult (18-25 years old), \nwith very fair skin tone (Fitzpatrick I), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with CLEAR FACIAL REDNESS appearing as noticeable pink-red coloration \non the cheeks, nose, and chin, with several visible broken capillaries (small red spider veins). \nThe redness should be obvious but not extreme, similar to rosacea. Skin should otherwise be \nsmooth with NO raised acne bumps, NO brown dark spots, NO rough texture - ONLY redness \nand broken capillaries.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues.",
+  "is_flipped": true,
+  "original_filename": "redness_moderate_20250930_221854_0069.png",
+  "flip_timestamp": "2025-10-01T15:52:46.902019"
+}

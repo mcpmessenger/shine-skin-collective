@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\fine_lines_wrinkles\\mild\\fine_lines_wrinkles_mild_20250928_151250_0033_flipped.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 229,
+        "y": 215,
+        "width": 567,
+        "height": 567,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

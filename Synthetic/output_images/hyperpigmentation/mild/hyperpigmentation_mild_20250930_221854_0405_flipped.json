@@ -1,0 +1,34 @@
+{
+  "image_filename": "hyperpigmentation_mild_20250930_221854_0405_flipped.png",
+  "skin_condition": "hyperpigmentation",
+  "severity": "mild",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "26-35",
+    "age_group": "adult",
+    "skin_tone": "tan brown skin tone (Fitzpatrick V)",
+    "gender": "female"
+  },
+  "classification_targets": {
+    "redness": false,
+    "pore_size": false,
+    "textured_skin": false,
+    "hyperpigmentation": true
+  },
+  "severity_targets": {
+    "redness": "none",
+    "pore_size": "none",
+    "textured_skin": "none",
+    "hyperpigmentation": "mild"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "mild",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single female, adult (26-35 years old), \nwith tan brown skin tone (Fitzpatrick V), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with 5-10 SMALL DARK BROWN SPOTS or areas of darker pigmentation \nscattered on the cheeks or forehead. These are FLAT (not raised), appearing as slightly darker \npatches or freckle-like marks against otherwise even-toned skin. The spots should be brown/tan, \nclearly darker than surrounding skin. NO raised bumps (not acne), NO overall pink/red flush, \nNO rough texture - ONLY brown pigmentation spots.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues.",
+  "is_flipped": true,
+  "original_filename": "hyperpigmentation_mild_20250930_221854_0405.png",
+  "flip_timestamp": "2025-10-01T15:50:08.943589"
+}

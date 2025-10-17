@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\hyperpigmentation\\mild\\hyperpigmentation_mild_0_flipped.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 63,
+        "y": 250,
+        "width": 638,
+        "height": 638,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

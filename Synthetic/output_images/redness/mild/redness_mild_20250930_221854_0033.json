@@ -1,0 +1,31 @@
+{
+  "image_filename": "redness_mild_20250930_221854_0033.png",
+  "skin_condition": "redness",
+  "severity": "mild",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "36-50",
+    "age_group": "middle-aged",
+    "skin_tone": "tan brown skin tone (Fitzpatrick V)",
+    "gender": "male"
+  },
+  "classification_targets": {
+    "redness": true,
+    "pore_size": false,
+    "textured_skin": false,
+    "hyperpigmentation": false
+  },
+  "severity_targets": {
+    "redness": "mild",
+    "pore_size": "none",
+    "textured_skin": "none",
+    "hyperpigmentation": "none"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "mild",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single male, middle-aged (36-50 years old), \nwith tan brown skin tone (Fitzpatrick V), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with VERY SUBTLE FACIAL REDNESS appearing as a gentle pink flush \nconcentrated on the cheeks and nose, with maybe 1-2 tiny visible broken capillaries. \nThe redness should be mild and barely noticeable, giving a slightly flushed appearance. \nThe rest of the face should have clear, even-toned skin with NO raised acne bumps, \nNO brown dark spots, NO texture issues - ONLY subtle pink coloration.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues."
+}

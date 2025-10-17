@@ -1,0 +1,53 @@
+{
+  "image_filename": "aging_advanced_20250928_151250_0084_flipped.png",
+  "skin_condition": "aging",
+  "severity": "advanced",
+  "generation_timestamp": "20250928_151250",
+  "image_counter": 84,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "advanced",
+    "confidence_score": 0.95,
+    "affected_percentage": 0.35,
+    "feature_count": 35
+  },
+  "classification_targets": {
+    "acne": false,
+    "fine_lines_wrinkles": false,
+    "aging": true,
+    "hyperpigmentation": false,
+    "textured_skin": false,
+    "redness": false,
+    "pore_size": false
+  },
+  "severity_targets": {
+    "acne": "none",
+    "fine_lines_wrinkles": "none",
+    "aging": "advanced",
+    "hyperpigmentation": "none",
+    "textured_skin": "none",
+    "redness": "none",
+    "pore_size": "none"
+  },
+  "demographics": {
+    "age_group": "elderly",
+    "age_range": "70+",
+    "skin_tone": "olive skin tone",
+    "gender": "female",
+    "variation_index": 4
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing portrait with full face clearly visible from chin to forehead, shoulders and upper chest included in frame, centered composition, eye-level camera angle, neutral background, even soft lighting, eyes open and looking at camera, no occlusions, no hands or objects blocking the face, proper distance from camera (not too close, not too far), high resolution, sharp focus on facial features, suitable for face detection algorithms. Apply the following specific skin details: Portrait showing an elderly face with pronounced wrinkles, significant sagging, prominent age spots, and thin, fragile skin, harsh lighting. The person should be a elderly female with olive skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "aging_advanced_20250928_151250_0084.png",
+  "flip_timestamp": "2025-09-30T19:30:30.061442"
+}

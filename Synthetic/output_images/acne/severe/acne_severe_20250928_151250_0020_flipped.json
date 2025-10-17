@@ -1,0 +1,53 @@
+{
+  "image_filename": "acne_severe_20250928_151250_0020_flipped.png",
+  "skin_condition": "acne",
+  "severity": "severe",
+  "generation_timestamp": "20250928_151250",
+  "image_counter": 20,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "severe",
+    "confidence_score": 0.93,
+    "affected_percentage": 0.22,
+    "feature_count": 22
+  },
+  "classification_targets": {
+    "acne": true,
+    "fine_lines_wrinkles": false,
+    "aging": false,
+    "hyperpigmentation": false,
+    "textured_skin": false,
+    "redness": false,
+    "pore_size": false
+  },
+  "severity_targets": {
+    "acne": "severe",
+    "fine_lines_wrinkles": "none",
+    "aging": "none",
+    "hyperpigmentation": "none",
+    "textured_skin": "none",
+    "redness": "none",
+    "pore_size": "none"
+  },
+  "demographics": {
+    "age_group": "young_adult",
+    "age_range": "18-25",
+    "skin_tone": "very fair skin tone",
+    "gender": "male",
+    "variation_index": 0
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing portrait with full face clearly visible from chin to forehead, shoulders and upper chest included in frame, centered composition, eye-level camera angle, neutral background, even soft lighting, eyes open and looking at camera, no occlusions, no hands or objects blocking the face, proper distance from camera (not too close, not too far), high resolution, sharp focus on facial features, suitable for face detection algorithms. Apply the following specific skin details: Front-facing portrait with many inflamed red pimples and a few small cysts, realistic human proportions, moderate redness and some light scarring, natural soft lighting, natural skin texture, not exaggerated or grotesque. The person should be a young adult male with very fair skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "acne_severe_20250928_151250_0020.png",
+  "flip_timestamp": "2025-09-30T19:30:17.888921"
+}

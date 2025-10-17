@@ -1,0 +1,31 @@
+{
+  "image_filename": "hyperpigmentation_moderate_20250930_221854_0455.png",
+  "skin_condition": "hyperpigmentation",
+  "severity": "moderate",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "26-35",
+    "age_group": "adult",
+    "skin_tone": "very fair skin tone (Fitzpatrick I)",
+    "gender": "male"
+  },
+  "classification_targets": {
+    "redness": false,
+    "pore_size": false,
+    "textured_skin": false,
+    "hyperpigmentation": true
+  },
+  "severity_targets": {
+    "redness": "none",
+    "pore_size": "none",
+    "textured_skin": "none",
+    "hyperpigmentation": "moderate"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "moderate",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single male, adult (26-35 years old), \nwith very fair skin tone (Fitzpatrick I), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with MULTIPLE DARK BROWN SPOTS AND PATCHES across cheeks, forehead, \nand temples, creating noticeably uneven skin tone. Include larger patches of darker pigmentation \n(melasma-like) mixed with smaller brown spots. All pigmentation is FLAT (same smooth texture as \nrest of skin), brown/tan in color, clearly visible. NO raised areas, NO red inflammation, \nNO bumpy texture - ONLY brown color variation/patches.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues."
+}

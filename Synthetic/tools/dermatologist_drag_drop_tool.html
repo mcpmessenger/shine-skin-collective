@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dermatologist Drag & Drop Tool - Shine Skin Collective v2.2</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        // Force cache busting
+        console.log('Loading dermatologist tool v2.2 - ' + new Date().toISOString());
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border-color: #dee2e6;
+            --accent-color: #007bff;
+            --accent-hover: #0056b3;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #404040;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #999999;
+            --border-color: #404040;
+            --accent-color: #4dabf7;
+            --accent-hover: #339af0;
+            --success-color: #51cf66;
+            --warning-color: #ffd43b;
+            --danger-color: #ff6b6b;
+            --shadow: 0 2px 10px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            height: 100vh;
+            margin: 0;
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 35px;
+            width: auto;
+        }
+
+        .app-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            margin-top: 60px;
+            height: calc(100vh - 60px);
+        }
+
+        /* Image Viewer */
+        .image-viewer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: auto;
+            min-height: 0;
+        }
+
+        .current-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            cursor: grab;
+            transition: all 0.3s ease;
+            user-select: none;
+            transform-origin: center;
+            display: block;
+            margin: auto;
+        }
+
+        .current-image:hover {
+            transform: scale(1.02);
+        }
+
+        .current-image.dragging {
+            opacity: 0.7;
+            transform: scale(0.95);
+            cursor: grabbing;
+        }
+
+        .image-info {
+            background: var(--bg-primary);
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .image-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .image-filename {
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .image-category {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .image-navigation {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-hover);
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Category Drop Zones */
+        .category-panel {
+            width: 350px;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .category-header {
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .category-zone {
+            background: var(--bg-primary);
+            border: 3px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .category-zone:hover {
+            border-color: var(--accent-color);
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .category-zone.drag-over {
+            border-color: var(--success-color);
+            background: rgba(40, 167, 69, 0.1);
+            border-style: solid;
+            transform: scale(1.05);
+        }
+
+        .category-icon {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .category-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: var(--text-primary);
+        }
+
+        .category-description {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .severity-selector {
+            display: none;
+            margin-top: 10px;
+            gap: 5px;
+        }
+
+        .severity-selector.show {
+            display: flex;
+        }
+
+        .severity-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .severity-btn:hover {
+            border-color: var(--accent-color);
+            background: var(--bg-secondary);
+        }
+
+        .severity-btn.selected {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Status Messages */
+        .status {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            z-index: 1001;
+            display: none;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .empty-state h2 {
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .empty-state p {
+            margin-bottom: 20px;
+        }
+
+        .load-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .load-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--bg-tertiary);
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stats h3 {
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <img src="https://automationalien.s3.us-east-1.amazonaws.com/Shine+Logo+with+Sunburst+Icon.png" alt="Shine Logo" class="logo">
+                <div class="app-title">Dermatologist Drag & Drop Tool</div>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <span class="theme-icon" id="themeIcon">🌙</span>
+                    <span id="themeText">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Image Viewer -->
+            <div class="image-viewer">
+                <div class="image-container">
+                    <div id="emptyState" class="empty-state">
+                        <h2>Welcome to the Dermatologist Drag & Drop Tool</h2>
+                        <p>Load images to begin organizing by skin condition</p>
+                        <button class="load-btn" onclick="loadImages()">📁 Load All Images</button>
+                    </div>
+                    <img id="currentImage" class="current-image" src="" alt="Current image" style="display: none;" draggable="true">
+                </div>
+                <div class="image-info" id="imageInfo" style="display: none;">
+                    <div class="image-details">
+                        <div class="image-filename" id="imageFilename">Image 1 of 400+</div>
+                        <div class="image-category" id="imageCategory">Category: acne - mild</div>
+                    </div>
+                    <div class="image-navigation">
+                        <button class="nav-btn" id="prevBtn" onclick="previousImage()" disabled>‹</button>
+                        <button class="nav-btn" id="nextBtn" onclick="nextImage()" disabled>›</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Drop Zones -->
+            <div class="category-panel">
+                <div class="category-header">
+                    <span>🎯 Drag Images Here</span>
+                    <span id="imageCount">0 images</span>
+                </div>
+                <div class="category-content">
+                    <!-- Stats -->
+                    <div class="stats">
+                        <h3>📊 Progress</h3>
+                        <div class="stat-item">
+                            <span>Total Images:</span>
+                            <span class="stat-value" id="totalImages">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Current Position:</span>
+                            <span class="stat-value" id="currentPosition">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Changes Made:</span>
+                            <span class="stat-value" id="changesCount">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Category Drop Zones -->
+                    <div class="category-grid">
+                        <div class="category-zone" data-category="healthy" data-severity="clear_skin" onclick="selectCategory('healthy', 'clear_skin')">
+                            <div class="category-icon">✅</div>
+                            <div class="category-name">Healthy</div>
+                            <div class="category-description">Clear, well-maintained skin</div>
+                            <div class="severity-selector">
+                                <button class="severity-btn" data-severity="clear_skin" onclick="selectSeverity('clear_skin', event)">Clear</button>
+                                <button class="severity-btn" data-severity="minimal_concerns" onclick="selectSeverity('minimal_concerns', event)">Minimal</button>
+                                <button class="severity-btn" data-severity="well_maintained" onclick="selectSeverity('well_maintained', event)">Well Maintained</button>
+                            </div>
+                        </div>
+
+                        <div class="category-zone" data-category="acne" data-severity="mild" onclick="selectCategory('acne', 'mild')">
+                            <div class="category-icon">🔴</div>
+                            <div class="category-name">Acne</div>
+                            <div class="category-description">Pimples, blackheads, whiteheads</div>
+                            <div class="severity-selector">
+                                <button class="severity-btn" data-severity="mild" onclick="selectSeverity('mild', event)">Mild</button>
+                                <button class="severity-btn" data-severity="moderate" onclick="selectSeverity('moderate', event)">Moderate</button>
+                                <button class="severity-btn" data-severity="severe" onclick="selectSeverity('severe', event)">Severe</button>
+                            </div>
+                        </div>
+
+                        <div class="category-zone" data-category="aging" data-severity="early_signs" onclick="selectCategory('aging', 'early_signs')">
+                            <div class="category-icon">⏰</div>
+                            <div class="category-name">Aging</div>
+                            <div class="category-description">Age-related changes</div>
+                            <div class="severity-selector">
+                                <button class="severity-btn" data-severity="early_signs" onclick="selectSeverity('early_signs', event)">Early Signs</button>
+                                <button class="severity-btn" data-severity="moderate" onclick="selectSeverity('moderate', event)">Moderate</button>
+                                <button class="severity-btn" data-severity="advanced" onclick="selectSeverity('advanced', event)">Advanced</button>
+                            </div>
+                        </div>
+
+                        <div class="category-zone" data-category="hyperpigmentation" data-severity="mild" onclick="selectCategory('hyperpigmentation', 'mild')">
+                            <div class="category-icon">🟣</div>
+                            <div class="category-name">Hyperpigmentation</div>
+                            <div class="category-description">Dark spots, uneven tone</div>
+                            <div class="severity-selector">
+                                <button class="severity-btn" data-severity="mild" onclick="selectSeverity('mild', event)">Mild</button>
+                                <button class="severity-btn" data-severity="moderate" onclick="selectSeverity('moderate', event)">Moderate</button>
+                                <button class="severity-btn" data-severity="severe" onclick="selectSeverity('severe', event)">Severe</button>
+                            </div>
+                        </div>
+
+                        <div class="category-zone" data-category="textured_skin" data-severity="slight" onclick="selectCategory('textured_skin', 'slight')">
+                            <div class="category-icon">🔲</div>
+                            <div class="category-name">Textured Skin</div>
+                            <div class="category-description">Rough, bumpy texture</div>
+                            <div class="severity-selector">
+                                <button class="severity-btn" data-severity="slight" onclick="selectSeverity('slight', event)">Slight</button>
+                                <button class="severity-btn" data-severity="moderate" onclick="selectSeverity('moderate', event)">Moderate</button>
+                                <button class="severity-btn" data-severity="severe" onclick="selectSeverity('severe', event)">Severe</button>
+                            </div>
+                        </div>
+
+                        <div class="category-zone" data-category="redness" data-severity="mild" onclick="selectCategory('redness', 'mild')">
+                            <div class="category-icon">🔴</div>
+                            <div class="category-name">Redness</div>
+                            <div class="category-description">Inflamed, irritated skin</div>
+                            <div class="severity-selector">
+                                <button class="severity-btn" data-severity="mild" onclick="selectSeverity('mild', event)">Mild</button>
+                                <button class="severity-btn" data-severity="moderate" onclick="selectSeverity('moderate', event)">Moderate</button>
+                                <button class="severity-btn" data-severity="severe" onclick="selectSeverity('severe', event)">Severe</button>
+                            </div>
+                        </div>
+
+                        <div class="category-zone" data-category="pore_size" data-severity="mild" onclick="selectCategory('pore_size', 'mild')">
+                            <div class="category-icon">🔍</div>
+                            <div class="category-name">Pore Size</div>
+                            <div class="category-description">Large, visible pores</div>
+                            <div class="severity-selector">
+                                <button class="severity-btn" data-severity="mild" onclick="selectSeverity('mild', event)">Mild</button>
+                                <button class="severity-btn" data-severity="moderate" onclick="selectSeverity('moderate', event)">Moderate</button>
+                                <button class="severity-btn" data-severity="severe" onclick="selectSeverity('severe', event)">Severe</button>
+                            </div>
+                        </div>
+
+                        <div class="category-zone" data-category="fine_lines_wrinkles" data-severity="mild" onclick="selectCategory('fine_lines_wrinkles', 'mild')">
+                            <div class="category-icon">📏</div>
+                            <div class="category-name">Fine Lines & Wrinkles</div>
+                            <div class="category-description">Facial lines and wrinkles</div>
+                            <div class="severity-selector">
+                                <button class="severity-btn" data-severity="mild" onclick="selectSeverity('mild', event)">Mild</button>
+                                <button class="severity-btn" data-severity="moderate" onclick="selectSeverity('moderate', event)">Moderate</button>
+                                <button class="severity-btn" data-severity="severe" onclick="selectSeverity('severe', event)">Severe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Messages -->
+        <div id="status" class="status"></div>
+
+        <!-- Loading -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading images...</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <script>
+        let images = [];
+        let currentIndex = 0;
+        let changes = [];
+        let isDarkMode = false;
+        let currentCategory = null;
+        let currentSeverity = null;
+        let imageZoom = 1;
+        let isZoomed = false;
+
+        // Load all images from the dataset
+        async function loadImages() {
+            showLoading(true);
+            
+            try {
+                images = await loadAllImages();
+                showStatus(`Loaded ${images.length} images from dataset`, 'success');
+            } catch (error) {
+                console.log('Error loading images, using sample data:', error);
+                images = generateSampleImages();
+                showStatus(`Loaded ${images.length} sample images (fallback)`, 'success');
+            }
+            
+            showLoading(false);
+            
+            if (images.length > 0) {
+                currentIndex = 0;
+                showCurrentImage();
+                updateStats();
+                updateProgress();
+            } else {
+                showEmptyState();
+            }
+        }
+
+        async function loadAllImages() {
+            const imageData = [];
+            let id = 1;
+
+            // Define all categories and severities to scan
+            const categories = [
+                { name: 'acne', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'aging', severities: ['early_signs', 'moderate', 'advanced'] },
+                { name: 'fine_lines_wrinkles', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'hyperpigmentation', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'pore_size', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'redness', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'textured_skin', severities: ['slight', 'moderate', 'severe'] },
+                { name: 'healthy', severities: ['clear_skin', 'minimal_concerns', 'well_maintained'] }
+            ];
+
+            console.log('Loading all images from dataset...');
+            
+            for (const category of categories) {
+                for (const severity of category.severities) {
+                    const categoryPath = `output_images/${category.name}/${severity}`;
+                    
+                    try {
+                        const response = await fetch(`http://localhost:8000/${categoryPath}/`);
+                        if (response.ok) {
+                            const html = await response.text();
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(html, 'text/html');
+                            const links = doc.querySelectorAll('a[href$=".png"]');
+                            
+                            console.log(`Found ${links.length} images in ${categoryPath}`);
+                            
+                            for (const link of links) {
+                                const filename = link.textContent.trim();
+                                if (filename.endsWith('.png')) {
+                                    const imagePath = `http://localhost:8000/${categoryPath}/${filename}`;
+                                    console.log('Creating image with path:', imagePath);
+                                    imageData.push({
+                                        id: id++,
+                                        filename: filename,
+                                        currentCategory: category.name,
+                                        currentSeverity: severity,
+                                        path: `http://localhost:8000/${categoryPath}/${filename}`,
+                                        metadataPath: `${categoryPath}/${filename.replace('.png', '.json')}`,
+                                        fullPath: `output_images/${category.name}/${severity}/${filename}`
+                                    });
+                                }
+                            }
+                        } else {
+                            console.log(`Could not access ${categoryPath}: ${response.status}`);
+                        }
+                    } catch (error) {
+                        console.log(`Could not scan ${categoryPath}:`, error);
+                    }
+                }
+            }
+
+            console.log(`Total images loaded: ${imageData.length}`);
+            return imageData;
+        }
+
+        function generateSampleImages() {
+            const sampleImages = [];
+            let id = 1;
+
+            const categories = [
+                { name: 'acne', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'aging', severities: ['early_signs', 'moderate', 'advanced'] },
+                { name: 'fine_lines_wrinkles', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'hyperpigmentation', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'pore_size', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'redness', severities: ['mild', 'moderate', 'severe'] },
+                { name: 'textured_skin', severities: ['slight', 'moderate', 'severe'] },
+                { name: 'healthy', severities: ['clear_skin', 'minimal_concerns', 'well_maintained'] }
+            ];
+
+            categories.forEach(category => {
+                category.severities.forEach(severity => {
+                    const imageCount = Math.floor(Math.random() * 20) + 10;
+                    
+                    for (let i = 0; i < imageCount; i++) {
+                        const timestamp = '20250910_163628';
+                        const imageNum = String(Math.floor(Math.random() * 1000)).padStart(4, '0');
+                        const filename = `${category.name}_${severity}_${timestamp}_${imageNum}.png`;
+                        
+                        sampleImages.push({
+                            id: id++,
+                            filename: filename,
+                            currentCategory: category.name,
+                            currentSeverity: severity,
+                            path: `data:image/svg+xml;base64,${btoa(`
+                                <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="400" height="400" fill="#F5F5F5"/>
+                                    <circle cx="200" cy="200" r="150" fill="#E8D5C4"/>
+                                    <circle cx="180" cy="180" r="20" fill="#FFB6C1"/>
+                                    <circle cx="220" cy="180" r="20" fill="#FFB6C1"/>
+                                    <path d="M160 240 Q200 280 240 240" stroke="#8B4513" stroke-width="3" fill="none"/>
+                                    <text x="200" y="350" text-anchor="middle" fill="#666" font-size="14">${category.name} - ${severity}</text>
+                                </svg>
+                            `)}`,
+                            metadataPath: `output_images/${category.name}/${severity}/${filename.replace('.png', '.json')}`,
+                            fullPath: `output_images/${category.name}/${severity}/${filename}`
+                        });
+                    }
+                });
+            });
+
+            return sampleImages;
+        }
+
+        function showCurrentImage() {
+            if (images.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            const image = images[currentIndex];
+            const currentImage = document.getElementById('currentImage');
+            const imageInfo = document.getElementById('imageInfo');
+            const imageFilename = document.getElementById('imageFilename');
+            const imageCategory = document.getElementById('imageCategory');
+
+            console.log('Setting image src to:', image.path);
+            currentImage.src = image.path;
+            currentImage.style.display = 'block';
+            imageInfo.style.display = 'flex';
+
+            imageFilename.textContent = `Image ${currentIndex + 1} of ${images.length}`;
+            imageCategory.textContent = `Category: ${image.currentCategory} - ${image.currentSeverity}`;
+            
+            // Add zoom event listeners
+            setupImageZoom();
+
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').disabled = currentIndex === images.length - 1;
+
+            // Reset category selection
+            resetCategorySelection();
+            
+            // Update stats
+            updateStats();
+        }
+        
+        // Setup zoom functionality for the current image
+        function setupImageZoom() {
+            const currentImage = document.getElementById('currentImage');
+            
+            // Remove existing listeners to avoid duplicates
+            currentImage.removeEventListener('wheel', handleImageZoom);
+            currentImage.removeEventListener('dblclick', resetImageZoom);
+            
+            // Add wheel zoom
+            currentImage.addEventListener('wheel', handleImageZoom);
+            
+            // Add double-click to reset zoom
+            currentImage.addEventListener('dblclick', resetImageZoom);
+        }
+        
+        // Handle mouse wheel zoom
+        function handleImageZoom(event) {
+            event.preventDefault();
+            
+            const currentImage = document.getElementById('currentImage');
+            const delta = event.deltaY;
+            
+            // Zoom in/out based on scroll direction
+            if (delta < 0) {
+                // Scroll up - zoom in
+                imageZoom = Math.min(imageZoom * 1.1, 3); // Max 3x zoom
+            } else {
+                // Scroll down - zoom out
+                imageZoom = Math.max(imageZoom * 0.9, 0.5); // Min 0.5x zoom
+            }
+            
+            // Apply zoom
+            currentImage.style.transform = `scale(${imageZoom})`;
+            isZoomed = imageZoom !== 1;
+            
+            // Ensure container can scroll when zoomed
+            const container = currentImage.parentElement;
+            if (isZoomed) {
+                container.style.overflow = 'auto';
+                container.style.alignItems = 'flex-start';
+                container.style.justifyContent = 'flex-start';
+            } else {
+                container.style.overflow = 'auto';
+                container.style.alignItems = 'center';
+                container.style.justifyContent = 'center';
+            }
+            
+            // Update cursor
+            if (isZoomed) {
+                currentImage.style.cursor = 'zoom-out';
+            } else {
+                currentImage.style.cursor = 'grab';
+            }
+            
+            // Show zoom level in status
+            showStatus(`Zoom: ${Math.round(imageZoom * 100)}%`, 'info');
+        }
+        
+        // Reset zoom to 100%
+        function resetImageZoom() {
+            imageZoom = 1;
+            isZoomed = false;
+            const currentImage = document.getElementById('currentImage');
+            const container = currentImage.parentElement;
+            
+            currentImage.style.transform = 'scale(1)';
+            currentImage.style.cursor = 'grab';
+            
+            // Restore container alignment
+            container.style.alignItems = 'center';
+            container.style.justifyContent = 'center';
+            
+            showStatus('Zoom reset to 100%', 'info');
+        }
+
+        function nextImage() {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                resetImageZoom(); // Reset zoom when changing images
+                showCurrentImage();
+                updateProgress();
+            }
+        }
+
+        function previousImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                resetImageZoom(); // Reset zoom when changing images
+                showCurrentImage();
+                updateProgress();
+            }
+        }
+
+        function selectCategory(category, severity) {
+            currentCategory = category;
+            currentSeverity = severity;
+            
+            // Hide all severity selectors
+            document.querySelectorAll('.severity-selector').forEach(selector => {
+                selector.classList.remove('show');
+            });
+            
+            // Show severity selector for selected category
+            const categoryZone = document.querySelector(`[data-category="${category}"]`);
+            const severitySelector = categoryZone.querySelector('.severity-selector');
+            severitySelector.classList.add('show');
+            
+            // Update button states
+            document.querySelectorAll('.severity-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Select the default severity
+            const defaultBtn = severitySelector.querySelector(`[data-severity="${severity}"]`);
+            if (defaultBtn) {
+                defaultBtn.classList.add('selected');
+            }
+            
+            // Process the image immediately
+            processImageMove(category, severity);
+        }
+
+        function selectSeverity(severity, event) {
+            event.stopPropagation();
+            currentSeverity = severity;
+            
+            // Update button states
+            const severitySelector = event.target.closest('.severity-selector');
+            severitySelector.querySelectorAll('.severity-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            
+            // Process the image move
+            processImageMove(currentCategory, severity);
+        }
+
+        function processImageMove(newCategory, newSeverity) {
+            const image = images[currentIndex];
+            
+            // Check if the category/severity is actually changing
+            if (image.currentCategory === newCategory && image.currentSeverity === newSeverity) {
+                showStatus('Image is already in this category', 'error');
+                return;
+            }
+
+            // Store the change
+            changes.push({
+                imageId: image.id,
+                filename: image.filename,
+                oldCategory: image.currentCategory,
+                oldSeverity: image.currentSeverity,
+                newCategory: newCategory,
+                newSeverity: newSeverity,
+                timestamp: new Date().toISOString()
+            });
+
+            // Update the image data in memory
+            image.currentCategory = newCategory;
+            image.currentSeverity = newSeverity;
+            image.fullPath = `output_images/${newCategory}/${newSeverity}/${image.filename}`;
+            image.metadataPath = `output_images/${newCategory}/${newSeverity}/${image.filename.replace('.png', '.json')}`;
+            image.path = `http://localhost:8000/output_images/${newCategory}/${newSeverity}/${image.filename}`;
+            
+            showStatus(`Moved to: ${newCategory} - ${newSeverity} (${changes.length} changes pending)`, 'success');
+
+            // Update display
+            document.getElementById('imageCategory').textContent = `Category: ${newCategory} - ${newSeverity}`;
+            
+            // Update stats
+            updateStats();
+            
+            // Auto-advance to next image
+            setTimeout(() => {
+                if (currentIndex < images.length - 1) {
+                    nextImage();
+                }
+            }, 1000);
+        }
+
+        function resetCategorySelection() {
+            currentCategory = null;
+            currentSeverity = null;
+            
+            // Hide all severity selectors
+            document.querySelectorAll('.severity-selector').forEach(selector => {
+                selector.classList.remove('show');
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('totalImages').textContent = images.length;
+            document.getElementById('currentPosition').textContent = `${currentIndex + 1} / ${images.length}`;
+            document.getElementById('changesCount').textContent = changes.length;
+            document.getElementById('imageCount').textContent = `${images.length} images`;
+        }
+
+        function updateProgress() {
+            const percentage = images.length > 0 ? ((currentIndex + 1) / images.length) * 100 : 0;
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+        }
+
+        function showEmptyState() {
+            document.getElementById('emptyState').style.display = 'flex';
+            document.getElementById('currentImage').style.display = 'none';
+            document.getElementById('imageInfo').style.display = 'none';
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 3000);
+        }
+
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (isDarkMode) {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light Mode';
+            } else {
+                body.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark Mode';
+            }
+            
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                isDarkMode = true;
+                toggleTheme();
+            }
+        }
+
+        // Drag and drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentImage = document.getElementById('currentImage');
+            
+            // Make image draggable
+            currentImage.addEventListener('dragstart', function(e) {
+                e.dataTransfer.setData('text/plain', 'current-image');
+                this.classList.add('dragging');
+            });
+            
+            currentImage.addEventListener('dragend', function(e) {
+                this.classList.remove('dragging');
+            });
+            
+            // Add drop zone functionality
+            document.querySelectorAll('.category-zone').forEach(zone => {
+                zone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+                
+                zone.addEventListener('dragleave', function(e) {
+                    this.classList.remove('drag-over');
+                });
+                
+                zone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    
+                    const category = this.dataset.category;
+                    const severity = this.dataset.severity;
+                    
+                    selectCategory(category, severity);
+                });
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (images.length === 0) return;
+
+            switch(e.key) {
+                case 'ArrowLeft':
+                    previousImage();
+                    break;
+                case 'ArrowRight':
+                    nextImage();
+                    break;
+                case '1':
+                    selectCategory('healthy', 'clear_skin');
+                    break;
+                case '2':
+                    selectCategory('acne', 'mild');
+                    break;
+                case '3':
+                    selectCategory('aging', 'early_signs');
+                    break;
+                case '4':
+                    selectCategory('hyperpigmentation', 'mild');
+                    break;
+                case '5':
+                    selectCategory('textured_skin', 'slight');
+                    break;
+                case '6':
+                    selectCategory('redness', 'mild');
+                    break;
+                case '7':
+                    selectCategory('pore_size', 'mild');
+                    break;
+                case '8':
+                    selectCategory('fine_lines_wrinkles', 'mild');
+                    break;
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            showEmptyState();
+            showStatus('Ready to organize images! Click "Load All Images" to start.', 'success');
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\pore_size\\moderate\\pore_size_moderate_0.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 29,
+        "y": 152,
+        "width": 609,
+        "height": 609,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

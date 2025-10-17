@@ -1,0 +1,31 @@
+{
+  "image_filename": "textured_skin_severe_20250930_221854_0356.png",
+  "skin_condition": "textured_skin",
+  "severity": "severe",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "36-50",
+    "age_group": "middle-aged",
+    "skin_tone": "fair skin tone (Fitzpatrick II)",
+    "gender": "male"
+  },
+  "classification_targets": {
+    "redness": false,
+    "pore_size": false,
+    "textured_skin": true,
+    "hyperpigmentation": false
+  },
+  "severity_targets": {
+    "redness": "none",
+    "pore_size": "none",
+    "textured_skin": "severe",
+    "hyperpigmentation": "none"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "severe",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single male, middle-aged (36-50 years old), \nwith fair skin tone (Fitzpatrick II), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with SIGNIFICANTLY ROUGH, BUMPY SKIN with pronounced texture \nirregularities including visible ACNE SCARRING (ice-pick scars, rolling scars, boxcar scars), \nraised bumps, and rough patches creating heavy shadowing. The skin surface is clearly uneven, \nbumpy, and textured with deep pitted scars and raised areas. Skin tone is relatively even, \nNO active inflamed acne, NO widespread redness - ONLY severe texture/scarring/bumps.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues."
+}

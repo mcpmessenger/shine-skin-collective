@@ -1,0 +1,34 @@
+{
+  "image_filename": "textured_skin_moderate_20250930_221854_0329_flipped.png",
+  "skin_condition": "textured_skin",
+  "severity": "moderate",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "36-50",
+    "age_group": "middle-aged",
+    "skin_tone": "very fair skin tone (Fitzpatrick I)",
+    "gender": "male"
+  },
+  "classification_targets": {
+    "redness": false,
+    "pore_size": false,
+    "textured_skin": true,
+    "hyperpigmentation": false
+  },
+  "severity_targets": {
+    "redness": "none",
+    "pore_size": "none",
+    "textured_skin": "moderate",
+    "hyperpigmentation": "none"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "moderate",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single male, middle-aged (36-50 years old), \nwith very fair skin tone (Fitzpatrick I), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with NOTICEABLE BUMPY, ROUGH SKIN TEXTURE with visible surface \nirregularities creating shadows and uneven light reflection. Include some shallow acne scars \n(rolling scars), bumps, or rough patches on cheeks creating clear texture. The SURFACE is visibly \nuneven with bumps and depressions. Skin tone is relatively even (minimal dark spots), NO active \nred acne, just TEXTURE and surface irregularities.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues.",
+  "is_flipped": true,
+  "original_filename": "textured_skin_moderate_20250930_221854_0329.png",
+  "flip_timestamp": "2025-10-01T15:53:28.906610"
+}

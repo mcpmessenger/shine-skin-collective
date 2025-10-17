@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\aging\\advanced\\aging_advanced_20250910_163628_0083.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 41,
+        "y": 256,
+        "width": 668,
+        "height": 668,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\pore_size\\moderate\\pore_size_moderate_20250930_221854_0183_flipped.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 141,
+        "y": 152,
+        "width": 752,
+        "height": 752,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

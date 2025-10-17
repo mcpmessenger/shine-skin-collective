@@ -1,0 +1,53 @@
+{
+  "image_filename": "aging_early_signs_20250910_163628_0068_flipped.png",
+  "skin_condition": "aging",
+  "severity": "early_signs",
+  "generation_timestamp": "20250910_163628",
+  "image_counter": 68,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "early_signs",
+    "confidence_score": 0.8,
+    "affected_percentage": 0.07,
+    "feature_count": 7
+  },
+  "classification_targets": {
+    "acne": false,
+    "fine_lines_wrinkles": false,
+    "aging": true,
+    "hyperpigmentation": false,
+    "textured_skin": false,
+    "redness": false,
+    "pore_size": false
+  },
+  "severity_targets": {
+    "acne": "none",
+    "fine_lines_wrinkles": "none",
+    "aging": "early_signs",
+    "hyperpigmentation": "none",
+    "textured_skin": "none",
+    "redness": "none",
+    "pore_size": "none"
+  },
+  "demographics": {
+    "age_group": "senior",
+    "age_range": "60+",
+    "skin_tone": "very fair skin tone",
+    "gender": "non-binary",
+    "variation_index": 8
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing, entire head and shoulders visible, centered, eye-level camera, neutral background, evenly lit, eyes open, no occlusions, no hands or objects blocking the face. Apply the following specific skin details: Close-up of a face with some loss of elasticity, a few fine lines, and slight dullness, natural lighting. The person should be a senior non-binary with very fair skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "aging_early_signs_20250910_163628_0068.png",
+  "flip_timestamp": "2025-09-30T19:30:37.503951"
+}

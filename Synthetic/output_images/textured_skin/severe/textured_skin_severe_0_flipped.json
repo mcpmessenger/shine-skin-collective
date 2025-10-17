@@ -1,0 +1,15 @@
+{
+  "image_filename": "textured_skin_severe_0_flipped.png",
+  "skin_condition": "textured_skin",
+  "severity": "severe",
+  "annotations": {
+    "detected": true,
+    "percentage": 0.32,
+    "spot_count": 32,
+    "confidence": 0.94
+  },
+  "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Close-up of a face with significant unevenness, prominent bumps, scars, and large pores, harsh lighting.",
+  "is_flipped": true,
+  "original_filename": "textured_skin_severe_0.png",
+  "flip_timestamp": "2025-09-30T19:32:26.681957"
+}

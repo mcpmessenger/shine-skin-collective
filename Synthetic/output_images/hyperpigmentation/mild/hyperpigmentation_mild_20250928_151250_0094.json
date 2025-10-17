@@ -1,0 +1,50 @@
+{
+    "image_filename": "hyperpigmentation_mild_20250928_151250_0094.png",
+    "skin_condition": "hyperpigmentation",
+    "severity": "mild",
+    "generation_timestamp": "20250928_151250",
+    "image_counter": 94,
+    "training_annotations": {
+        "condition_detected": true,
+        "severity_level": "mild",
+        "confidence_score": 0.78,
+        "affected_percentage": 0.04,
+        "feature_count": 4
+    },
+    "classification_targets": {
+        "acne": false,
+        "fine_lines_wrinkles": false,
+        "aging": false,
+        "hyperpigmentation": true,
+        "textured_skin": false,
+        "redness": false,
+        "pore_size": false
+    },
+    "severity_targets": {
+        "acne": "none",
+        "fine_lines_wrinkles": "none",
+        "aging": "none",
+        "hyperpigmentation": "mild",
+        "textured_skin": "none",
+        "redness": "none",
+        "pore_size": "none"
+    },
+    "demographics": {
+        "age_group": "elderly",
+        "age_range": "70+",
+        "skin_tone": "olive skin tone",
+        "gender": "female",
+        "variation_index": 4
+    },
+    "generation_details": {
+        "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing portrait with full face clearly visible from chin to forehead, shoulders and upper chest included in frame, centered composition, eye-level camera angle, neutral background, even soft lighting, eyes open and looking at camera, no occlusions, no hands or objects blocking the face, proper distance from camera (not too close, not too far), high resolution, sharp focus on facial features, suitable for face detection algorithms. Apply the following specific skin details: Portrait showing a face with a few light brown spots (freckles or sun spots), otherwise clear skin, natural lighting. The person should be a elderly female with olive skin tone.",
+        "model_used": "models/gemini-2.0-flash-preview-image-generation",
+        "api_version": "gemini-2.0-flash-preview"
+    },
+    "quality_metrics": {
+        "image_resolution": "1024x1024",
+        "lighting_quality": "natural",
+        "pose_quality": "front-facing",
+        "occlusion_level": "none"
+    }
+}

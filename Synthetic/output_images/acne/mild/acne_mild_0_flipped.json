@@ -1,0 +1,15 @@
+{
+  "image_filename": "acne_mild_0_flipped.png",
+  "skin_condition": "acne",
+  "severity": "mild",
+  "annotations": {
+    "detected": true,
+    "percentage": 0.05,
+    "spot_count": 5,
+    "confidence": 0.8
+  },
+  "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Close-up of a face with a few small, scattered pimples and blackheads, clear skin otherwise, natural lighting.",
+  "is_flipped": true,
+  "original_filename": "acne_mild_0.png",
+  "flip_timestamp": "2025-09-30T19:29:51.436086"
+}

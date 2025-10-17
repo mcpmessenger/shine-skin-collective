@@ -1,0 +1,34 @@
+{
+  "image_filename": "textured_skin_slight_20250930_221854_0257_flipped.png",
+  "skin_condition": "textured_skin",
+  "severity": "slight",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "18-25",
+    "age_group": "young adult",
+    "skin_tone": "tan brown skin tone (Fitzpatrick V)",
+    "gender": "male"
+  },
+  "classification_targets": {
+    "redness": false,
+    "pore_size": false,
+    "textured_skin": true,
+    "hyperpigmentation": false
+  },
+  "severity_targets": {
+    "redness": "none",
+    "pore_size": "none",
+    "textured_skin": "slight",
+    "hyperpigmentation": "none"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "slight",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single male, young adult (18-25 years old), \nwith tan brown skin tone (Fitzpatrick V), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with SLIGHTLY ROUGH OR BUMPY SKIN TEXTURE with minor surface \nirregularities visible when light hits the face at an angle. Include a few very small raised \nbumps or minimal roughness on the cheeks or forehead creating subtle shadows. The surface \nshould appear slightly uneven. Skin tone is even (NO dark spots), NO active acne inflammation, \nNO redness - ONLY subtle texture/roughness/tiny bumps.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues.",
+  "is_flipped": true,
+  "original_filename": "textured_skin_slight_20250930_221854_0257.png",
+  "flip_timestamp": "2025-10-01T15:53:58.301062"
+}

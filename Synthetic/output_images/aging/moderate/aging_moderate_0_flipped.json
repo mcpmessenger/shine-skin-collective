@@ -1,0 +1,15 @@
+{
+  "image_filename": "aging_moderate_0_flipped.png",
+  "skin_condition": "aging",
+  "severity": "moderate",
+  "annotations": {
+    "detected": true,
+    "percentage": 0.18,
+    "spot_count": 18,
+    "confidence": 0.88
+  },
+  "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Close-up of a face with noticeable wrinkles, some sagging, age spots, and uneven skin tone, natural lighting.",
+  "is_flipped": true,
+  "original_filename": "aging_moderate_0.png",
+  "flip_timestamp": "2025-09-30T19:30:43.044934"
+}

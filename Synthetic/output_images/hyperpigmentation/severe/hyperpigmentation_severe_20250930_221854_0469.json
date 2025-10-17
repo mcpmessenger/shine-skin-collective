@@ -1,0 +1,31 @@
+{
+  "image_filename": "hyperpigmentation_severe_20250930_221854_0469.png",
+  "skin_condition": "hyperpigmentation",
+  "severity": "severe",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "51-65",
+    "age_group": "mature",
+    "skin_tone": "fair skin tone (Fitzpatrick II)",
+    "gender": "female"
+  },
+  "classification_targets": {
+    "redness": false,
+    "pore_size": false,
+    "textured_skin": false,
+    "hyperpigmentation": true
+  },
+  "severity_targets": {
+    "redness": "none",
+    "pore_size": "none",
+    "textured_skin": "none",
+    "hyperpigmentation": "severe"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "severe",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single female, mature (51-65 years old), \nwith fair skin tone (Fitzpatrick II), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with EXTENSIVE DARK BROWN TO BLACK PATCHES covering large areas \nof the cheeks, forehead, upper lip, and temples. The hyperpigmentation creates a very uneven, \nsplotchy appearance with significant contrast between darker brown/black and lighter areas. \nLarge melasma-like patches dominate the face. All areas are FLAT and smooth (no texture difference), \nNO raised bumps, NO red coloration - ONLY dark brown/black pigmentation creating patchwork appearance.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues."
+}

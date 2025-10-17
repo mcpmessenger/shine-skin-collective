@@ -1,0 +1,217 @@
+{
+  "preprocessing_info": {
+    "input_directory": "Synthetic\\output_images",
+    "output_directory": "Synthetic\\preprocessed_images",
+    "face_detection_method": "Haar Cascade",
+    "face_size": [
+      384,
+      384
+    ],
+    "padding_factor": 0.2
+  },
+  "statistics": {
+    "total_images": 1664,
+    "faces_detected": 1467,
+    "faces_extracted": 1467,
+    "failed_detections": 1664,
+    "conditions_processed": {
+      "acne": {
+        "total_images": 122,
+        "faces_detected": 105,
+        "faces_extracted": 105,
+        "failed_detections": 122,
+        "severity_levels": {
+          "mild": {
+            "total_images": 38,
+            "faces_detected": 38,
+            "faces_extracted": 38,
+            "failed_detections": 38
+          },
+          "moderate": {
+            "total_images": 42,
+            "faces_detected": 32,
+            "faces_extracted": 32,
+            "failed_detections": 42
+          },
+          "severe": {
+            "total_images": 42,
+            "faces_detected": 35,
+            "faces_extracted": 35,
+            "failed_detections": 42
+          }
+        }
+      },
+      "aging": {
+        "total_images": 126,
+        "faces_detected": 115,
+        "faces_extracted": 115,
+        "failed_detections": 126,
+        "severity_levels": {
+          "advanced": {
+            "total_images": 42,
+            "faces_detected": 35,
+            "faces_extracted": 35,
+            "failed_detections": 42
+          },
+          "early_signs": {
+            "total_images": 42,
+            "faces_detected": 42,
+            "faces_extracted": 42,
+            "failed_detections": 42
+          },
+          "moderate": {
+            "total_images": 42,
+            "faces_detected": 38,
+            "faces_extracted": 38,
+            "failed_detections": 42
+          }
+        }
+      },
+      "fine_lines_wrinkles": {
+        "total_images": 126,
+        "faces_detected": 110,
+        "faces_extracted": 110,
+        "failed_detections": 126,
+        "severity_levels": {
+          "mild": {
+            "total_images": 42,
+            "faces_detected": 38,
+            "faces_extracted": 38,
+            "failed_detections": 42
+          },
+          "moderate": {
+            "total_images": 42,
+            "faces_detected": 32,
+            "faces_extracted": 32,
+            "failed_detections": 42
+          },
+          "severe": {
+            "total_images": 42,
+            "faces_detected": 40,
+            "faces_extracted": 40,
+            "failed_detections": 42
+          }
+        }
+      },
+      "hyperpigmentation": {
+        "total_images": 322,
+        "faces_detected": 258,
+        "faces_extracted": 258,
+        "failed_detections": 322,
+        "severity_levels": {
+          "mild": {
+            "total_images": 116,
+            "faces_detected": 111,
+            "faces_extracted": 111,
+            "failed_detections": 116
+          },
+          "moderate": {
+            "total_images": 104,
+            "faces_detected": 99,
+            "faces_extracted": 99,
+            "failed_detections": 104
+          },
+          "severe": {
+            "total_images": 102,
+            "faces_detected": 48,
+            "faces_extracted": 48,
+            "failed_detections": 102
+          }
+        }
+      },
+      "pore_size": {
+        "total_images": 334,
+        "faces_detected": 277,
+        "faces_extracted": 277,
+        "failed_detections": 334,
+        "severity_levels": {
+          "mild": {
+            "total_images": 112,
+            "faces_detected": 106,
+            "faces_extracted": 106,
+            "failed_detections": 112
+          },
+          "moderate": {
+            "total_images": 112,
+            "faces_detected": 93,
+            "faces_extracted": 93,
+            "failed_detections": 112
+          },
+          "severe": {
+            "total_images": 110,
+            "faces_detected": 78,
+            "faces_extracted": 78,
+            "failed_detections": 110
+          }
+        }
+      },
+      "redness": {
+        "total_images": 304,
+        "faces_detected": 297,
+        "faces_extracted": 297,
+        "failed_detections": 304,
+        "severity_levels": {
+          "mild": {
+            "total_images": 112,
+            "faces_detected": 111,
+            "faces_extracted": 111,
+            "failed_detections": 112
+          },
+          "moderate": {
+            "total_images": 82,
+            "faces_detected": 81,
+            "faces_extracted": 81,
+            "failed_detections": 82
+          },
+          "severe": {
+            "total_images": 110,
+            "faces_detected": 105,
+            "faces_extracted": 105,
+            "failed_detections": 110
+          }
+        }
+      },
+      "textured_skin": {
+        "total_images": 330,
+        "faces_detected": 305,
+        "faces_extracted": 305,
+        "failed_detections": 330,
+        "severity_levels": {
+          "mild": {
+            "total_images": 2,
+            "faces_detected": 2,
+            "faces_extracted": 2,
+            "failed_detections": 2
+          },
+          "moderate": {
+            "total_images": 108,
+            "faces_detected": 101,
+            "faces_extracted": 101,
+            "failed_detections": 108
+          },
+          "severe": {
+            "total_images": 100,
+            "faces_detected": 87,
+            "faces_extracted": 87,
+            "failed_detections": 100
+          },
+          "slight": {
+            "total_images": 120,
+            "faces_detected": 115,
+            "faces_extracted": 115,
+            "failed_detections": 120
+          }
+        }
+      }
+    }
+  },
+  "recommendations": {
+    "success_rate": "88.2%",
+    "failed_images": 1664,
+    "next_steps": [
+      "Review failed detections and potentially retrain face detection",
+      "Use extracted faces for model training",
+      "Update model to expect 384x384 face images"
+    ]
+  }
+}

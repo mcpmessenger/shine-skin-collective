@@ -1,0 +1,12 @@
+{
+    "image_filename": "acne_severe_0.png",
+    "skin_condition": "acne",
+    "severity": "severe",
+    "annotations": {
+        "detected": true,
+        "percentage": 0.22,
+        "spot_count": 22,
+        "confidence": 0.93
+    },
+    "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Front-facing portrait with many inflamed red pimples and a few small cysts, realistic human proportions, moderate redness and some light scarring, natural soft lighting, natural skin texture, not exaggerated or grotesque."
+}

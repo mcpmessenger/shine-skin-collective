@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\pore_size\\severe\\pore_size_severe_20250910_163628_0202.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 109,
+        "y": 121,
+        "width": 772,
+        "height": 772,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

@@ -1,0 +1,34 @@
+{
+  "image_filename": "pore_size_moderate_20250930_221854_0197_flipped.png",
+  "skin_condition": "pore_size",
+  "severity": "moderate",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "36-50",
+    "age_group": "middle-aged",
+    "skin_tone": "olive skin tone (Fitzpatrick IV)",
+    "gender": "female"
+  },
+  "classification_targets": {
+    "redness": false,
+    "pore_size": true,
+    "textured_skin": false,
+    "hyperpigmentation": false
+  },
+  "severity_targets": {
+    "redness": "none",
+    "pore_size": "moderate",
+    "textured_skin": "none",
+    "hyperpigmentation": "none"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "moderate",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single female, middle-aged (36-50 years old), \nwith olive skin tone (Fitzpatrick IV), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with CLEARLY VISIBLE ENLARGED PORES on the nose, cheeks, and forehead. \nThe pores appear as distinct small dark dots giving a textured appearance to the skin, similar to \nsubtle orange-peel texture. Each pore is clearly visible as a small opening. Skin may appear \nslightly oily. NO active acne bumps, NO widespread redness, NO brown dark spots - ONLY enlarged \npore openings creating dots across the skin.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues.",
+  "is_flipped": true,
+  "original_filename": "pore_size_moderate_20250930_221854_0197.png",
+  "flip_timestamp": "2025-10-01T15:51:39.837538"
+}

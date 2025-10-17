@@ -1,0 +1,12 @@
+{
+    "image_filename": "fine_lines_wrinkles_severe_0.png",
+    "skin_condition": "fine_lines_wrinkles",
+    "severity": "severe",
+    "annotations": {
+        "detected": true,
+        "percentage": 0.25,
+        "spot_count": 25,
+        "confidence": 0.92
+    },
+    "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Close-up of a face with deep wrinkles on the forehead, around the eyes, and mouth, sagging skin, uneven pigmentation, harsh lighting."
+}

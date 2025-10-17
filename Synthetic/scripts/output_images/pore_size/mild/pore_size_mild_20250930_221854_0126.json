@@ -1,0 +1,31 @@
+{
+  "image_filename": "pore_size_mild_20250930_221854_0126.png",
+  "skin_condition": "pore_size",
+  "severity": "mild",
+  "generation_timestamp": "20250930_221854",
+  "demographics": {
+    "age_range": "18-25",
+    "age_group": "young adult",
+    "skin_tone": "tan brown skin tone (Fitzpatrick V)",
+    "gender": "person"
+  },
+  "classification_targets": {
+    "redness": false,
+    "pore_size": true,
+    "textured_skin": false,
+    "hyperpigmentation": false
+  },
+  "severity_targets": {
+    "redness": "none",
+    "pore_size": "mild",
+    "textured_skin": "none",
+    "hyperpigmentation": "none"
+  },
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "mild",
+    "confidence_score": 0.9,
+    "is_balanced_generation": true
+  },
+  "prompt_used": "Photorealistic selfie, single person, young adult (18-25 years old), \nwith tan brown skin tone (Fitzpatrick V), front-facing, eyes to camera, full head and shoulders fully visible with small \nmargin around hairline and chin, subject centered, portrait orientation, face occupies ~40-60% of frame, \neven soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering \nthe face. \n\nCONDITION SPECIFIC: Face with SLIGHTLY ENLARGED PORES visible primarily on the nose and \ninner cheeks when viewed closely. The pores appear as tiny dots or pinpoint openings, creating \na subtle texture. Pores should be just barely visible, requiring close inspection. Skin is \notherwise smooth and clear with NO acne bumps, NO redness, NO dark spots - ONLY slight pore \nvisibility on nose area.\n\nIMPORTANT: The face should show ONLY the specified condition. Skin should be otherwise clear and \nhealthy-looking except for the described condition. Do not mix multiple skin issues."
+}

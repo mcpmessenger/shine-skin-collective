@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\acne\\mild\\acne_mild_20250910_163628_0009_flipped.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 174,
+        "y": 222,
+        "width": 686,
+        "height": 686,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

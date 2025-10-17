@@ -1,0 +1,16 @@
+{
+    "generation_timestamp": "20250910_163628",
+    "total_conditions": 7,
+    "images_per_condition": 10,
+    "total_expected_images": 210,
+    "generated_images": 210,
+    "conditions": [
+        "acne",
+        "fine_lines_wrinkles",
+        "aging",
+        "hyperpigmentation",
+        "textured_skin",
+        "redness",
+        "pore_size"
+    ]
+}

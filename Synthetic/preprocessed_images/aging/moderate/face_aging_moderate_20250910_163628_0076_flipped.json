@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\aging\\moderate\\aging_moderate_20250910_163628_0076_flipped.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 56,
+        "y": 58,
+        "width": 791,
+        "height": 791,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

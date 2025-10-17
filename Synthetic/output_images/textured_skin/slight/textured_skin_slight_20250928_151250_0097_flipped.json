@@ -1,0 +1,53 @@
+{
+  "image_filename": "textured_skin_slight_20250928_151250_0097_flipped.png",
+  "skin_condition": "textured_skin",
+  "severity": "slight",
+  "generation_timestamp": "20250928_151250",
+  "image_counter": 97,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "slight",
+    "confidence_score": 0.77,
+    "affected_percentage": 0.06,
+    "feature_count": 6
+  },
+  "classification_targets": {
+    "acne": false,
+    "fine_lines_wrinkles": false,
+    "aging": false,
+    "hyperpigmentation": false,
+    "textured_skin": true,
+    "redness": false,
+    "pore_size": false
+  },
+  "severity_targets": {
+    "acne": "none",
+    "fine_lines_wrinkles": "none",
+    "aging": "none",
+    "hyperpigmentation": "none",
+    "textured_skin": "slight",
+    "redness": "none",
+    "pore_size": "none"
+  },
+  "demographics": {
+    "age_group": "adult",
+    "age_range": "26-40",
+    "skin_tone": "fair skin tone",
+    "gender": "female",
+    "variation_index": 1
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing portrait with full face clearly visible from chin to forehead, shoulders and upper chest included in frame, centered composition, eye-level camera angle, neutral background, even soft lighting, eyes open and looking at camera, no occlusions, no hands or objects blocking the face, proper distance from camera (not too close, not too far), high resolution, sharp focus on facial features, suitable for face detection algorithms. Apply the following specific skin details: Portrait showing a face with slightly uneven skin texture, some minor bumps or roughness, natural lighting. The person should be a adult female with fair skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "textured_skin_slight_20250928_151250_0097.png",
+  "flip_timestamp": "2025-09-30T19:32:36.808923"
+}

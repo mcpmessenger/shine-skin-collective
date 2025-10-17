@@ -1,0 +1,53 @@
+{
+  "image_filename": "pore_size_severe_20250910_163628_0203_flipped.png",
+  "skin_condition": "pore_size",
+  "severity": "severe",
+  "generation_timestamp": "20250910_163628",
+  "image_counter": 203,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "severe",
+    "confidence_score": 0.92,
+    "affected_percentage": 0.22,
+    "feature_count": 0
+  },
+  "classification_targets": {
+    "acne": false,
+    "fine_lines_wrinkles": false,
+    "aging": false,
+    "hyperpigmentation": false,
+    "textured_skin": false,
+    "redness": false,
+    "pore_size": true
+  },
+  "severity_targets": {
+    "acne": "none",
+    "fine_lines_wrinkles": "none",
+    "aging": "none",
+    "hyperpigmentation": "none",
+    "textured_skin": "none",
+    "redness": "none",
+    "pore_size": "severe"
+  },
+  "demographics": {
+    "age_group": "senior",
+    "age_range": "60+",
+    "skin_tone": "medium skin tone",
+    "gender": "male",
+    "variation_index": 3
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing, entire head and shoulders visible, centered, eye-level camera, neutral background, evenly lit, eyes open, no occlusions, no hands or objects blocking the face. Apply the following specific skin details: Front-facing portrait with large, open pores prominently visible on the T-zone and cheeks; detailed yet natural texture, no blur, soft even lighting. The person should be a senior male with medium skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "pore_size_severe_20250910_163628_0203.png",
+  "flip_timestamp": "2025-09-30T19:31:58.909340"
+}

@@ -1,0 +1,50 @@
+{
+    "image_filename": "fine_lines_wrinkles_mild_20250910_163628_0035.png",
+    "skin_condition": "fine_lines_wrinkles",
+    "severity": "mild",
+    "generation_timestamp": "20250910_163628",
+    "image_counter": 35,
+    "training_annotations": {
+        "condition_detected": true,
+        "severity_level": "mild",
+        "confidence_score": 0.75,
+        "affected_percentage": 0.03,
+        "feature_count": 3
+    },
+    "classification_targets": {
+        "acne": false,
+        "fine_lines_wrinkles": true,
+        "aging": false,
+        "hyperpigmentation": false,
+        "textured_skin": false,
+        "redness": false,
+        "pore_size": false
+    },
+    "severity_targets": {
+        "acne": "none",
+        "fine_lines_wrinkles": "mild",
+        "aging": "none",
+        "hyperpigmentation": "none",
+        "textured_skin": "none",
+        "redness": "none",
+        "pore_size": "none"
+    },
+    "demographics": {
+        "age_group": "young_adult",
+        "age_range": "18-25",
+        "skin_tone": "tan skin tone",
+        "gender": "non-binary",
+        "variation_index": 5
+    },
+    "generation_details": {
+        "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing, entire head and shoulders visible, centered, eye-level camera, neutral background, evenly lit, eyes open, no occlusions, no hands or objects blocking the face. Apply the following specific skin details: Close-up of an eye area with subtle fine lines around the outer corners, smooth skin texture, soft lighting. The person should be a young adult non-binary with tan skin tone.",
+        "model_used": "models/gemini-2.0-flash-preview-image-generation",
+        "api_version": "gemini-2.0-flash-preview"
+    },
+    "quality_metrics": {
+        "image_resolution": "1024x1024",
+        "lighting_quality": "natural",
+        "pose_quality": "front-facing",
+        "occlusion_level": "none"
+    }
+}

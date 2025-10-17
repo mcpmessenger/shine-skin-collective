@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\aging\\early_signs\\aging_early_signs_20250928_151250_0064_flipped.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 53,
+        "y": 100,
+        "width": 585,
+        "height": 585,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

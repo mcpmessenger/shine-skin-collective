@@ -1,0 +1,50 @@
+{
+    "image_filename": "redness_severe_20250910_163628_0177.png",
+    "skin_condition": "redness",
+    "severity": "severe",
+    "generation_timestamp": "20250910_163628",
+    "image_counter": 177,
+    "training_annotations": {
+        "condition_detected": true,
+        "severity_level": "severe",
+        "confidence_score": 0.93,
+        "affected_percentage": 0.3,
+        "feature_count": 0
+    },
+    "classification_targets": {
+        "acne": false,
+        "fine_lines_wrinkles": false,
+        "aging": false,
+        "hyperpigmentation": false,
+        "textured_skin": false,
+        "redness": true,
+        "pore_size": false
+    },
+    "severity_targets": {
+        "acne": "none",
+        "fine_lines_wrinkles": "none",
+        "aging": "none",
+        "hyperpigmentation": "none",
+        "textured_skin": "none",
+        "redness": "severe",
+        "pore_size": "none"
+    },
+    "demographics": {
+        "age_group": "middle_aged",
+        "age_range": "41-60",
+        "skin_tone": "dark skin tone",
+        "gender": "female",
+        "variation_index": 7
+    },
+    "generation_details": {
+        "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing, entire head and shoulders visible, centered, eye-level camera, neutral background, evenly lit, eyes open, no occlusions, no hands or objects blocking the face. Apply the following specific skin details: Front-facing portrait with widespread facial erythema on cheeks, nose, and chin, distinct but realistic telangiectasia in areas, natural skin detail preserved, soft even lighting, not oversaturated. The person should be a middle-aged female with dark skin tone.",
+        "model_used": "models/gemini-2.0-flash-preview-image-generation",
+        "api_version": "gemini-2.0-flash-preview"
+    },
+    "quality_metrics": {
+        "image_resolution": "1024x1024",
+        "lighting_quality": "natural",
+        "pose_quality": "front-facing",
+        "occlusion_level": "none"
+    }
+}

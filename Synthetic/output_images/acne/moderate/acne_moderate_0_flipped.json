@@ -1,0 +1,15 @@
+{
+  "image_filename": "acne_moderate_0_flipped.png",
+  "skin_condition": "acne",
+  "severity": "moderate",
+  "annotations": {
+    "detected": true,
+    "percentage": 0.15,
+    "spot_count": 15,
+    "confidence": 0.9
+  },
+  "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Close-up of a face with several inflamed red pimples, some whiteheads, and blackheads, slightly oily skin, natural lighting.",
+  "is_flipped": true,
+  "original_filename": "acne_moderate_0.png",
+  "flip_timestamp": "2025-09-30T19:30:01.764811"
+}

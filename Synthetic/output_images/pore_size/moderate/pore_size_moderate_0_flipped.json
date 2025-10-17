@@ -1,0 +1,15 @@
+{
+  "image_filename": "pore_size_moderate_0_flipped.png",
+  "skin_condition": "pore_size",
+  "severity": "moderate",
+  "annotations": {
+    "detected": true,
+    "percentage": 0.12,
+    "spot_count": 0,
+    "confidence": 0.86
+  },
+  "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Front-facing portrait with clearly visible enlarged pores on nose and cheeks; realistic texture, mild oiliness, even lighting for clinical clarity.",
+  "is_flipped": true,
+  "original_filename": "pore_size_moderate_0.png",
+  "flip_timestamp": "2025-09-30T19:31:50.732127"
+}

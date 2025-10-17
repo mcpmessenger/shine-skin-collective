@@ -1,0 +1,12 @@
+{
+    "image_filename": "textured_skin_moderate_0.png",
+    "skin_condition": "textured_skin",
+    "severity": "moderate",
+    "annotations": {
+        "detected": true,
+        "percentage": 0.16,
+        "spot_count": 16,
+        "confidence": 0.86
+    },
+    "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Close-up of a face with noticeable rough patches, small bumps, and enlarged pores, natural lighting."
+}

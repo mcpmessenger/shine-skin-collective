@@ -1,0 +1,15 @@
+{
+  "image_filename": "fine_lines_wrinkles_mild_0_flipped.png",
+  "skin_condition": "fine_lines_wrinkles",
+  "severity": "mild",
+  "annotations": {
+    "detected": true,
+    "percentage": 0.03,
+    "spot_count": 3,
+    "confidence": 0.75
+  },
+  "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Close-up of an eye area with subtle fine lines around the outer corners, smooth skin texture, soft lighting.",
+  "is_flipped": true,
+  "original_filename": "fine_lines_wrinkles_mild_0.png",
+  "flip_timestamp": "2025-09-30T19:30:52.876826"
+}

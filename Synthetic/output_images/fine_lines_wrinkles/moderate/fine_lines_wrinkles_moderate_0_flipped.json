@@ -1,0 +1,15 @@
+{
+  "image_filename": "fine_lines_wrinkles_moderate_0_flipped.png",
+  "skin_condition": "fine_lines_wrinkles",
+  "severity": "moderate",
+  "annotations": {
+    "detected": true,
+    "percentage": 0.1,
+    "spot_count": 10,
+    "confidence": 0.85
+  },
+  "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Close-up of a forehead with visible wrinkles, some deeper lines, and slightly uneven skin tone, natural lighting.",
+  "is_flipped": true,
+  "original_filename": "fine_lines_wrinkles_moderate_0.png",
+  "flip_timestamp": "2025-09-30T19:31:04.134564"
+}

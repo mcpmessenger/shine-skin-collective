@@ -1,0 +1,53 @@
+{
+  "image_filename": "pore_size_moderate_20250910_163628_0196_flipped.png",
+  "skin_condition": "pore_size",
+  "severity": "moderate",
+  "generation_timestamp": "20250910_163628",
+  "image_counter": 196,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "moderate",
+    "confidence_score": 0.86,
+    "affected_percentage": 0.12,
+    "feature_count": 0
+  },
+  "classification_targets": {
+    "acne": false,
+    "fine_lines_wrinkles": false,
+    "aging": false,
+    "hyperpigmentation": false,
+    "textured_skin": false,
+    "redness": false,
+    "pore_size": true
+  },
+  "severity_targets": {
+    "acne": "none",
+    "fine_lines_wrinkles": "none",
+    "aging": "none",
+    "hyperpigmentation": "none",
+    "textured_skin": "none",
+    "redness": "none",
+    "pore_size": "moderate"
+  },
+  "demographics": {
+    "age_group": "adult",
+    "age_range": "26-40",
+    "skin_tone": "brown skin tone",
+    "gender": "male",
+    "variation_index": 6
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing, entire head and shoulders visible, centered, eye-level camera, neutral background, evenly lit, eyes open, no occlusions, no hands or objects blocking the face. Apply the following specific skin details: Front-facing portrait with clearly visible enlarged pores on nose and cheeks; realistic texture, mild oiliness, even lighting for clinical clarity. The person should be a adult male with brown skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "pore_size_moderate_20250910_163628_0196.png",
+  "flip_timestamp": "2025-09-30T19:31:54.727161"
+}

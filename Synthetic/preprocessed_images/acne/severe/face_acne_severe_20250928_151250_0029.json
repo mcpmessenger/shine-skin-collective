@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\acne\\severe\\acne_severe_20250928_151250_0029.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 54,
+        "y": 52,
+        "width": 884,
+        "height": 884,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

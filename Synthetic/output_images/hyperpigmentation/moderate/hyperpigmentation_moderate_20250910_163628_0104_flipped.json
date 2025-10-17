@@ -1,0 +1,53 @@
+{
+  "image_filename": "hyperpigmentation_moderate_20250910_163628_0104_flipped.png",
+  "skin_condition": "hyperpigmentation",
+  "severity": "moderate",
+  "generation_timestamp": "20250910_163628",
+  "image_counter": 104,
+  "training_annotations": {
+    "condition_detected": true,
+    "severity_level": "moderate",
+    "confidence_score": 0.87,
+    "affected_percentage": 0.12,
+    "feature_count": 12
+  },
+  "classification_targets": {
+    "acne": false,
+    "fine_lines_wrinkles": false,
+    "aging": false,
+    "hyperpigmentation": true,
+    "textured_skin": false,
+    "redness": false,
+    "pore_size": false
+  },
+  "severity_targets": {
+    "acne": "none",
+    "fine_lines_wrinkles": "none",
+    "aging": "none",
+    "hyperpigmentation": "moderate",
+    "textured_skin": "none",
+    "redness": "none",
+    "pore_size": "none"
+  },
+  "demographics": {
+    "age_group": "elderly",
+    "age_range": "70+",
+    "skin_tone": "olive skin tone",
+    "gender": "female",
+    "variation_index": 4
+  },
+  "generation_details": {
+    "prompt_used": "Generate a realistic photographic selfie of a single person, front-facing, entire head and shoulders visible, centered, eye-level camera, neutral background, evenly lit, eyes open, no occlusions, no hands or objects blocking the face. Apply the following specific skin details: Close-up of a face with several darker brown patches (melasma or post-inflammatory hyperpigmentation), uneven skin tone, natural lighting. The person should be a elderly female with olive skin tone.",
+    "model_used": "models/gemini-2.0-flash-preview-image-generation",
+    "api_version": "gemini-2.0-flash-preview"
+  },
+  "quality_metrics": {
+    "image_resolution": "1024x1024",
+    "lighting_quality": "natural",
+    "pose_quality": "front-facing",
+    "occlusion_level": "none"
+  },
+  "is_flipped": true,
+  "original_filename": "hyperpigmentation_moderate_20250910_163628_0104.png",
+  "flip_timestamp": "2025-09-30T19:31:36.433161"
+}

@@ -1,0 +1,14 @@
+{
+  "original_image": "Synthetic\\output_images\\hyperpigmentation\\severe\\hyperpigmentation_severe_20250930_221854_0500.png",
+  "face_detection": {
+    "faces_found": 1,
+    "face_data": [
+      {
+        "x": 135,
+        "y": 290,
+        "width": 255,
+        "height": 255,
+        "confidence": 1.0
+      }
+    ],
+    "face_roi": 

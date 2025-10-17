@@ -1,0 +1,12 @@
+{
+    "image_filename": "hyperpigmentation_severe_0.png",
+    "skin_condition": "hyperpigmentation",
+    "severity": "severe",
+    "annotations": {
+        "detected": true,
+        "percentage": 0.22,
+        "spot_count": 18,
+        "confidence": 0.92
+    },
+    "prompt_used": "Photorealistic selfie, single adult, front-facing, eyes to camera, full head and shoulders fully visible with small margin around hairline and chin, subject centered, portrait orientation, face occupies ~4060% of frame, even soft lighting, plain light-gray background, no hats, masks, sunglasses, hands, or hair covering the face. Apply: Front-facing portrait with pronounced, well-defined hyperpigmented patches (melasma and post-inflammatory hyperpigmentation) on cheeks and forehead; distinct, irregular edges with realistic variation in tone (medium to dark brown), visible pores and natural skin texture showing through; avoid muddy smears; soft even lighting for clinical clarity."
+}
