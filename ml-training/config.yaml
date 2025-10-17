@@ -1,0 +1,97 @@
+# Configuration file for Shine Skin Collective ML Training
+
+# Model Configuration
+model:
+  name: "resnet50"  # Options: resnet50, resnet101, efficientnet-b0, efficientnet-b3, vit-base-patch16-224
+  pretrained: true
+  num_conditions: 7
+  num_severity_levels: 6
+  dropout_rate: 0.3
+
+# Training Configuration
+training:
+  batch_size: 32
+  learning_rate: 1e-4
+  num_epochs: 100
+  weight_decay: 1e-4
+  gradient_clip_norm: 1.0
+  
+  # Data splits
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+# Data Configuration
+data:
+  image_size: 224
+  num_workers: 4
+  pin_memory: true
+  
+  # Augmentation settings
+  augmentation:
+    horizontal_flip: 0.5
+    random_rotate: 0.3
+    shift_scale_rotate: 0.5
+    brightness_contrast: 0.5
+    hue_saturation: 0.5
+    gauss_noise: 0.3
+
+# Loss Configuration
+loss:
+  condition_weight: 1.0
+  severity_weight: 0.5
+  use_focal_loss: true
+  focal_alpha: 1.0
+  focal_gamma: 2.0
+
+# Optimizer Configuration
+optimizer:
+  type: "adamw"  # Options: adam, adamw, sgd
+  lr: 1e-4
+  weight_decay: 1e-4
+  betas: [0.9, 0.999]
+  
+# Scheduler Configuration
+scheduler:
+  type: "cosine"  # Options: cosine, step, plateau
+  T_max: 100  # For cosine annealing
+  eta_min: 1e-6
+
+# Logging Configuration
+logging:
+  use_wandb: false
+  project_name: "shine-skin-collective"
+  log_interval: 10
+  save_interval: 10
+  
+# Early Stopping
+early_stopping:
+  enabled: true
+  patience: 20
+  min_delta: 0.001
+  monitor: "val_f1"
+
+# Model Saving
+checkpoints:
+  save_dir: "checkpoints"
+  save_best: true
+  save_last: true
+  save_interval: 10
+
+# Evaluation
+evaluation:
+  test_on_best: true
+  save_predictions: true
+  generate_report: true
+
+# Device Configuration
+device:
+  type: "auto"  # Options: auto, cpu, cuda
+  mixed_precision: false  # Use AMP for faster training
+
+# Dataset Paths
+paths:
+  data_root: "../Synthetic/output_images"
+  checkpoint_dir: "checkpoints"
+  output_dir: "outputs"
+  log_dir: "logs"
