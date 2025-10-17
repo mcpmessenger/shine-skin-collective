@@ -1,30 +1,128 @@
-# Shine Skincare App
-
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+# Shine Skin Collective
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/williamtflynn-2750s-projects/v0-shine-skincare-app)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/JNXZ95Il6RQ)
+[![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Machine Learning](https://img.shields.io/badge/ML-Enabled-blue?style=for-the-badge&logo=tensorflow)](https://tensorflow.org/)
 
 ## Overview
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+Shine Skin Collective is an advanced skincare analysis platform that combines cutting-edge machine learning with a modern web interface to provide personalized skin condition analysis and product recommendations. The platform uses a comprehensive synthetic dataset of 3000+ skin images to train multi-label classification models for accurate skin condition detection and severity assessment.
 
-## Deployment
+## 🚀 Key Features
 
-Your project is live at:
+- **Multi-label Skin Classification**: Detects 7 primary skin conditions (acne, aging, fine lines, hyperpigmentation, pore size, redness, textured skin)
+- **Severity Assessment**: Predicts severity levels for each detected condition
+- **Synthetic Dataset**: 3000+ high-quality synthetic images with comprehensive annotations
+- **Real-time Analysis**: Fast inference capabilities with <100ms processing time
+- **Modern UI/UX**: Built with Next.js, React, and Tailwind CSS
+- **RESTful API**: Easy integration for external applications
+- **Comprehensive Documentation**: Detailed guides for developers and ML engineers
 
-**[https://vercel.com/williamtflynn-2750s-projects/v0-shine-skincare-app](https://vercel.com/williamtflynn-2750s-projects/v0-shine-skincare-app)**
+## 📁 Project Structure
 
-## Build your app
+```
+shine-skin-collective/
+├── app/                    # Next.js application pages and API routes
+├── components/             # React components and UI library
+├── docs/                   # Comprehensive documentation
+│   ├── Developer_Integration_Instructions.md
+│   ├── ML_Model_Training_Plan.md
+│   └── README.md
+├── Synthetic/              # Synthetic dataset and ML tools
+│   ├── output_images/      # 3000+ synthetic skin images
+│   ├── scripts/            # Data generation and processing tools
+│   └── docs/               # Dataset documentation
+├── lib/                    # Utility functions and types
+└── public/                 # Static assets
+```
 
-Continue building your app on:
+## 🛠️ Getting Started
 
-**[https://v0.app/chat/projects/JNXZ95Il6RQ](https://v0.app/chat/projects/JNXZ95Il6RQ)**
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Python 3.8+ (for ML model development)
 
-## How It Works
+### Installation
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+1. Clone the repository:
+```bash
+git clone https://github.com/mcpmessenger/shine-skin-collective.git
+cd shine-skin-collective
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 📚 Documentation
+
+### For Developers
+- **[Developer Integration Instructions](docs/Developer_Integration_Instructions.md)** - Complete guide for integrating the ML model
+- **[API Integration Guide](API_INTEGRATION.md)** - API endpoints and specifications
+- **[Technical Requirements](Shine%20Skincare%20App%20v2%20Technical%20Product%20Requirements%20Document.md)** - Detailed product specifications
+
+### For ML Engineers
+- **[ML Model Training Plan](docs/ML_Model_Training_Plan.md)** - Comprehensive training strategy
+- **[Synthetic Dataset Documentation](Synthetic/README.md)** - Dataset structure and usage
+- **[Data Generation Guide](Synthetic/docs/DATA_GENERATION_PLAN.md)** - Synthetic data creation process
+
+### For Data Scientists
+- **[Dataset Statistics](Synthetic/docs/)** - Comprehensive data analysis
+- **[Generation Strategy](Synthetic/docs/image_generation_strategy.md)** - Data generation methodology
+
+## 🔧 Technical Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS, Radix UI components
+- **ML Framework**: TensorFlow/PyTorch (configurable)
+- **Data Processing**: Python, NumPy, OpenCV, Pillow
+- **API**: RESTful endpoints with JSON responses
+- **Deployment**: Vercel, Docker support
+
+## 📊 Dataset Overview
+
+The synthetic dataset includes:
+- **3,000+ high-resolution images** across 7 skin conditions
+- **Multiple severity levels** per condition
+- **Comprehensive JSON annotations** with demographic data
+- **Quality validation tools** for data integrity
+- **Preprocessing pipelines** for model training
+
+## 🎯 Performance Targets
+
+- **Classification Accuracy**: F1-score > 0.85
+- **Inference Speed**: < 100ms per image
+- **API Response Time**: < 500ms end-to-end
+- **Model Size**: Optimized for mobile deployment
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our documentation for guidelines on:
+- Model training and evaluation
+- API integration and testing
+- Data generation and validation
+- Code contributions and pull requests
+
+## 📞 Support
+
+For questions or support:
+- Review the documentation in the `docs/` directory
+- Check the synthetic dataset tools in `Synthetic/tools/`
+- Refer to the API integration guide for technical issues
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
