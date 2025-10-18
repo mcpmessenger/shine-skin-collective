@@ -33,6 +33,18 @@ export interface AnalysisResult {
   recommendations: ProductRecommendation[]
 }
 
+// Embedding representation of an analysis for similarity search
+export interface AnalysisEmbedding {
+  id: string
+  vector: number[]
+  concerns: SkinConcern[]
+}
+
+export interface ProductEmbedding {
+  product: ProductRecommendation
+  vector: number[]
+}
+
 export interface AnalysisResponse {
   analysisId: string
   message: string

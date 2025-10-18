@@ -1,5 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server"
-import type { AnalysisResponse } from "@/lib/types"
+import type { AnalysisResponse, AnalysisResult } from "@/lib/types"
+import { getSupabaseAdmin } from "@/lib/supabase"
+import { embedAnalysisConcerns } from "@/lib/embeddings"
+import { upsert as upsertJsonIndex } from "@/lib/vector-index"
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,40 +24,54 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Image too large. Maximum size is 10MB." }, { status: 400 })
     }
 
-    // TODO: Implement actual AI analysis integration
-    // This is where you would integrate with your Python Flask backend:
-    //
-    // 1. Upload image to storage (Vercel Blob or S3)
-    // const blob = await put(`analysis/${Date.now()}-${image.name}`, image, {
-    //   access: 'public',
-    // })
-    //
-    // 2. Call Python Flask API for analysis
-    // const flaskResponse = await fetch(process.env.FLASK_API_URL + '/analyze', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ imageUrl: blob.url })
-    // })
-    //
-    // 3. Store results in database (Supabase/Neon)
-    // const { data } = await supabase
-    //   .from('analyses')
-    //   .insert({ id: analysisId, results: flaskData })
-    //
-    // 4. Return analysis ID
+    // Call Python FastAPI inference server
+    const form = new FormData()
+    form.append("image", image)
+    const PY_API = process.env.PY_INFER_URL || "http://localhost:8000"
+    const inferRes = await fetch(`${PY_API}/infer`, { method: 'POST', body: form })
+    if (!inferRes.ok) {
+      const err = await inferRes.text()
+      return NextResponse.json({ error: `Inference failed: ${err}` }, { status: 502 })
+    }
+    const inferData = await inferRes.json()
 
-    // Simulate processing time
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    // Generate mock analysis ID
     const analysisId = `analysis_${Date.now()}`
-
-    const response: AnalysisResponse = {
-      analysisId,
-      message: "Analysis complete",
-      status: "completed",
+    const result: AnalysisResult = {
+      id: analysisId,
+      metadata: {
+        captureDate: new Date().toISOString(),
+        imageQuality: "Unknown",
+        lightingCondition: "Unknown",
+        skinType: "Unknown",
+      },
+      concerns: inferData.concerns,
+      recommendations: [],
     }
 
+    // Persist to Supabase
+    try {
+      const supabase = getSupabaseAdmin()
+      await supabase.from('analyses').insert({
+        id: analysisId,
+        metadata: result.metadata,
+        concerns: result.concerns,
+        recommendations: result.recommendations,
+      })
+      const vector = embedAnalysisConcerns(result.concerns)
+      await supabase.from('analysis_embeddings').upsert({
+        analysis_id: analysisId,
+        vector,
+        metadata: result.metadata,
+      })
+    } catch (e) {
+      // Fallback to JSON index for local dev
+      try {
+        const vector = embedAnalysisConcerns(result.concerns)
+        upsertJsonIndex({ id: analysisId, vector, metadata: result.metadata })
+      } catch {}
+    }
+
+    const response: AnalysisResponse = { analysisId, message: "Analysis complete", status: "completed" }
     return NextResponse.json(response)
   } catch (error) {
     console.error("Analysis error:", error)

@@ -42,7 +42,10 @@ class SkinConditionTrainer:
                  image_size: int = 224,
                  device: str = 'auto',
                  use_wandb: bool = False,
-                 experiment_name: Optional[str] = None):
+                 experiment_name: Optional[str] = None,
+                 pretrained: bool = False,
+                 max_train_batches: Optional[int] = None,
+                 max_val_batches: Optional[int] = None):
         
         self.model_name = model_name
         self.batch_size = batch_size
@@ -50,6 +53,9 @@ class SkinConditionTrainer:
         self.num_epochs = num_epochs
         self.image_size = image_size
         self.use_wandb = use_wandb
+        self.pretrained = pretrained
+        self.max_train_batches = max_train_batches
+        self.max_val_batches = max_val_batches
         
         # Set device
         if device == 'auto':
@@ -102,7 +108,7 @@ class SkinConditionTrainer:
             model_name=self.model_name,
             num_conditions=7,
             num_severity_levels=6,
-            pretrained=True
+            pretrained=self.pretrained
         ).to(self.device)
         
         # Initialize optimizer
@@ -209,6 +215,10 @@ class SkinConditionTrainer:
                     'epoch': epoch,
                     'batch': batch_idx
                 })
+
+            # Optional fast pass limit
+            if self.max_train_batches is not None and (batch_idx + 1) >= self.max_train_batches:
+                break
         
         # Compute epoch metrics
         epoch_loss = total_loss / num_batches
@@ -263,6 +273,10 @@ class SkinConditionTrainer:
                     'Loss': f"{loss.item():.4f}",
                     'Avg Loss': f"{total_loss/(batch_idx+1):.4f}"
                 })
+
+                # Optional fast pass limit
+                if self.max_val_batches is not None and (batch_idx + 1) >= self.max_val_batches:
+                    break
         
         # Compute epoch metrics
         epoch_loss = total_loss / num_batches
@@ -442,6 +456,9 @@ def main():
     parser.add_argument('--device', type=str, default='auto', help='Device (auto, cpu, cuda)')
     parser.add_argument('--wandb', action='store_true', help='Use Weights & Biases logging')
     parser.add_argument('--experiment-name', type=str, default=None, help='Experiment name for wandb')
+    parser.add_argument('--pretrained', action='store_true', help='Use pretrained weights for backbone')
+    parser.add_argument('--max-train-batches', type=int, default=None, help='Limit number of training batches per epoch (for quick tests)')
+    parser.add_argument('--max-val-batches', type=int, default=None, help='Limit number of validation batches per epoch (for quick tests)')
     
     args = parser.parse_args()
     
@@ -454,7 +471,10 @@ def main():
         image_size=args.image_size,
         device=args.device,
         use_wandb=args.wandb,
-        experiment_name=args.experiment_name
+        experiment_name=args.experiment_name,
+        pretrained=args.pretrained,
+        max_train_batches=args.max_train_batches,
+        max_val_batches=args.max_val_batches
     )
     
     # Setup and train

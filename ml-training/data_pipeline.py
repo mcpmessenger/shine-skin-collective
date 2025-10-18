@@ -84,8 +84,13 @@ class SkinConditionDataset(Dataset):
 class SkinDataLoader:
     """Data loader class for handling synthetic skin dataset"""
     
-    def __init__(self, data_root: str = "../Synthetic/output_images"):
-        self.data_root = data_root
+    def __init__(self, data_root: Optional[str] = None):
+        # Resolve dataset path relative to the repository root by default
+        if data_root is None:
+            base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+            self.data_root = os.path.join(base_dir, 'Synthetic', 'output_images')
+        else:
+            self.data_root = data_root
         self.condition_names = [
             'acne', 'aging', 'fine_lines_wrinkles', 'hyperpigmentation',
             'pore_size', 'redness', 'textured_skin'

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ProductRecommendations } from "@/components/product-recommendations"
-import { fetchAnalysisResults, ApiError } from "@/lib/api-client"
+import { fetchAnalysisResults, fetchRecommendations, ApiError } from "@/lib/api-client"
 import type { AnalysisResult } from "@/lib/types"
 
 export default function ResultsPage() {
@@ -18,6 +18,8 @@ export default function ResultsPage() {
   const [results, setResults] = useState<AnalysisResult | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [recoLoading, setRecoLoading] = useState(false)
+  const [scoredProducts, setScoredProducts] = useState<{ product: any; score: number }[] | null>(null)
 
   useEffect(() => {
     if (analysisId) {
@@ -32,6 +34,10 @@ export default function ResultsPage() {
     try {
       const data = await fetchAnalysisResults(id)
       setResults(data)
+      // fetch recommendations based on concerns via cosine similarity API
+      setRecoLoading(true)
+      const recos = await fetchRecommendations({ concerns: data.concerns, topK: 4 })
+      setScoredProducts(recos.recommendations)
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.message)
@@ -41,6 +47,7 @@ export default function ResultsPage() {
       console.error("Failed to fetch results:", err)
     } finally {
       setLoading(false)
+      setRecoLoading(false)
     }
   }
 
@@ -179,7 +186,10 @@ export default function ResultsPage() {
           </div>
         </section>
 
-        <ProductRecommendations products={results.recommendations} concerns={results.concerns.map((c) => c.name)} />
+        <ProductRecommendations
+          products={(scoredProducts?.map((s) => s.product) ?? results.recommendations) as any}
+          concerns={results.concerns.map((c) => c.name)}
+        />
 
         {/* CTA */}
         <div className="mt-12 text-center">

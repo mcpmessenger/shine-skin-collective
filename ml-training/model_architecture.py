@@ -6,9 +6,36 @@ Supports both condition detection and severity prediction
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import numpy as np
 import timm
 from typing import Dict, List, Optional, Tuple
 
+
+def _normalize_timm_model_name(model_name: str) -> str:
+    """Return a timm-compatible model name.
+    Accepts common aliases/hyphenated names and maps them to timm identifiers.
+    """
+    if not model_name:
+        return model_name
+
+    name = model_name.strip()
+    lower = name.lower()
+
+    # Explicit aliases
+    alias_map = {
+        'efficientnet-b0': 'efficientnet_b0',
+        'efficientnet-b3': 'efficientnet_b3',
+        'vit-base-patch16-224': 'vit_base_patch16_224',
+        # Pass-through for common resnets
+        'resnet50': 'resnet50',
+        'resnet101': 'resnet101',
+    }
+
+    if lower in alias_map:
+        return alias_map[lower]
+
+    # Fallback: replace hyphens with underscores
+    return lower.replace('-', '_')
 
 class MultiLabelSkinClassifier(nn.Module):
     """
@@ -298,8 +325,9 @@ def create_model(model_name: str = 'resnet50',
                 num_severity_levels: int = 6,
                 pretrained: bool = True) -> MultiLabelSkinClassifier:
     """Factory function to create model"""
+    normalized_name = _normalize_timm_model_name(model_name)
     return MultiLabelSkinClassifier(
-        backbone_name=model_name,
+        backbone_name=normalized_name,
         num_conditions=num_conditions,
         num_severity_levels=num_severity_levels,
         pretrained=pretrained

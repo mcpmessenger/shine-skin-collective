@@ -10,6 +10,8 @@ export default function CameraLandingPage() {
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [isCapturing, setIsCapturing] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [detectionSupported, setDetectionSupported] = useState(false)
+  const [faceDetected, setFaceDetected] = useState<boolean | null>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const router = useRouter()
@@ -23,9 +25,46 @@ export default function CameraLandingPage() {
     }
   }, [])
 
+  // Lightweight real-time face detection indicator (if supported by the browser)
+  useEffect(() => {
+    let interval: any
+    const FaceDetectorCtor: any = typeof window !== 'undefined' ? (window as any).FaceDetector : undefined
+    if (FaceDetectorCtor && videoRef.current) {
+      setDetectionSupported(true)
+      const detector = new FaceDetectorCtor({ fastMode: true, maxDetectedFaces: 1 })
+      interval = setInterval(async () => {
+        try {
+          if (!videoRef.current) return
+          const faces = await detector.detect(videoRef.current)
+          setFaceDetected(Array.isArray(faces) && faces.length > 0)
+        } catch {
+          // If detection fails intermittently, do nothing; indicator will retry
+        }
+      }, 700)
+    } else {
+      setDetectionSupported(false)
+    }
+    return () => {
+      if (interval) clearInterval(interval)
+    }
+  }, [videoRef.current])
+
   const startCamera = async () => {
     try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia({
+      // Feature detection + secure context guard
+      if (typeof navigator === "undefined" || typeof window === "undefined") return
+      const hasMediaDevices = typeof (navigator as any).mediaDevices !== "undefined" &&
+        typeof (navigator as any).mediaDevices.getUserMedia === "function"
+      if (!hasMediaDevices) {
+        setError(
+          window.isSecureContext
+            ? "Camera not supported in this browser/device. Try uploading a photo."
+            : "Camera requires a secure context (https or localhost). Please switch to https or use localhost."
+        )
+        return
+      }
+
+      const mediaStream = await (navigator as any).mediaDevices.getUserMedia({
         video: {
           facingMode: "user",
           width: { ideal: 1280 },
@@ -37,7 +76,7 @@ export default function CameraLandingPage() {
         videoRef.current.srcObject = mediaStream
       }
     } catch (err) {
-      setError("Unable to access camera. Please grant camera permissions.")
+      setError("Unable to access camera. Please grant permissions or upload a photo.")
       console.error("Camera error:", err)
     }
   }
@@ -121,6 +160,18 @@ export default function CameraLandingPage() {
         {/* Bottom Controls */}
         <div className="relative z-10 flex flex-col items-center gap-4 p-8 pb-12">
           {error && <div className="rounded-lg bg-destructive/10 px-4 py-2 text-sm text-destructive">{error}</div>}
+
+          {detectionSupported && (
+            <div className="flex items-center gap-2 text-xs text-white/80">
+              <span
+                className={
+                  "inline-block h-2.5 w-2.5 rounded-full " +
+                  (faceDetected ? "bg-emerald-400" : "bg-red-400")
+                }
+              />
+              <span>{faceDetected ? "Face detected" : "No face detected"}</span>
+            </div>
+          )}
 
           <Button
             size="lg"

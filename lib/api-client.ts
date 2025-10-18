@@ -37,3 +37,16 @@ export async function fetchAnalysisResults(analysisId: string) {
 
   return response.json()
 }
+
+export async function fetchRecommendations(input: { concerns: any[]; topK?: number }) {
+  const response = await fetch(`/api/recommend`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  })
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ error: 'Failed to fetch recommendations' }))
+    throw new ApiError(response.status, error.error || 'Failed to fetch recommendations')
+  }
+  return response.json() as Promise<{ recommendations: { product: any; score: number }[] }>
+}

@@ -1,5 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server"
 import type { AnalysisResult } from "@/lib/types"
+import { embedAnalysisConcerns } from "@/lib/embeddings"
+import { upsert } from "@/lib/vector-index"
+import { getSupabaseAdmin } from "@/lib/supabase"
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
@@ -26,7 +29,22 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     //
     // return NextResponse.json(data.results)
 
-    // Return mock data for now
+    // Try fetching from Supabase first
+    try {
+      const supabase = getSupabaseAdmin()
+      const { data, error } = await supabase.from('analyses').select('*').eq('id', id).single()
+      if (!error && data) {
+        const fromDb: AnalysisResult = {
+          id,
+          metadata: data.metadata,
+          concerns: data.concerns,
+          recommendations: data.recommendations || [],
+        }
+        return NextResponse.json(fromDb)
+      }
+    } catch {}
+
+    // Fallback: return mock data for now
     const mockResults: AnalysisResult = {
       id,
       metadata: {
@@ -111,6 +129,14 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
           targetConcerns: ["Skin Texture", "Tone Evenness"],
         },
       ],
+    }
+
+    // Upsert embedding into vector index for search MVP
+    try {
+      const vector = embedAnalysisConcerns(mockResults.concerns)
+      upsert({ id: mockResults.id, vector, metadata: mockResults.metadata })
+    } catch (e) {
+      console.warn("vector index upsert failed", e)
     }
 
     return NextResponse.json(mockResults)

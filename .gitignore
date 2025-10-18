@@ -25,3 +25,56 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python venv
+.venv/
+
+# local data
+/.data/
+/ml-training/__pycache__/
+/ml-training/checkpoints/
+
+# ---------- General OS/editor junk ----------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.history/
+
+# ---------- Logs ----------
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.eslintcache
+
+# ---------- Additional Node/Next.js ----------
+.next/
+.next/cache/
+.turbo/
+.swc/
+
+# ---------- Python artifacts ----------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+coverage/
+coverage.xml
+htmlcov/
+.tox/
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# ---------- ML training artifacts ----------
+ml-training/training_history.png

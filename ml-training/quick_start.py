@@ -47,8 +47,9 @@ def check_environment():
             print(f"❌ {package} not installed")
             return False
     
-    # Check data directory
-    data_path = "../Synthetic/output_images"
+    # Check data directory (resolve relative to repo root)
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    data_path = os.path.join(base_dir, 'Synthetic', 'output_images')
     if os.path.exists(data_path):
         print(f"✅ Synthetic dataset found at {data_path}")
         

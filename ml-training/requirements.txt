@@ -36,3 +36,8 @@ flake8==6.1.0
 # Optional: For advanced model architectures
 timm==0.9.12  # PyTorch Image Models
 efficientnet-pytorch==0.7.1
+
+# Inference API
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+mediapipe==0.10.11

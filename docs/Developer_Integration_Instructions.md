@@ -155,3 +155,21 @@ Implement robust error handling for:
 -   **Model Versioning**: Implement a strategy for managing different versions of the ML model.
 -   **Scalability**: Design the integration to handle increased load, potentially using asynchronous API calls or load balancing.
 -   **Feedback Loop**: Consider incorporating a mechanism for collecting user feedback to continuously improve model performance.
+
+## Supabase Schema (MVP)
+
+```sql
+create table if not exists analyses (
+  id text primary key,
+  created_at timestamp with time zone default now(),
+  metadata jsonb,
+  concerns jsonb not null,
+  recommendations jsonb
+);
+
+create table if not exists analysis_embeddings (
+  analysis_id text primary key references analyses(id) on delete cascade,
+  vector real[] not null,
+  metadata jsonb
+);
+```
