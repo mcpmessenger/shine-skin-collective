@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Camera, Sparkles, Loader2 } from "lucide-react"
+import { Camera, Sparkles, Loader2, Upload, Image as ImageIcon, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { uploadImageForAnalysis, ApiError } from "@/lib/api-client"
@@ -12,8 +12,12 @@ export default function CameraLandingPage() {
   const [error, setError] = useState<string | null>(null)
   const [detectionSupported, setDetectionSupported] = useState(false)
   const [faceDetected, setFaceDetected] = useState<boolean | null>(null)
+  const [mode, setMode] = useState<'camera' | 'upload'>('camera')
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [isUploading, setIsUploading] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
   useEffect(() => {
@@ -119,13 +123,71 @@ export default function CameraLandingPage() {
     }
   }
 
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setSelectedImage(e.target?.result as string)
+        setMode('upload')
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleUploadImage = async () => {
+    if (!selectedImage) return
+
+    setIsUploading(true)
+    setError(null)
+
+    try {
+      // Convert data URL to blob
+      const response = await fetch(selectedImage)
+      const blob = await response.blob()
+      
+      const data = await uploadImageForAnalysis(blob)
+      router.push(`/results?id=${data.analysisId}`)
+    } catch (err) {
+      if (err instanceof ApiError) {
+        setError(err.message)
+      } else {
+        setError("Network error. Please try again.")
+      }
+      setIsUploading(false)
+    }
+  }
+
+  const clearSelectedImage = () => {
+    setSelectedImage(null)
+    setMode('camera')
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
+
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Video Stream */}
-      <video ref={videoRef} autoPlay playsInline muted className="absolute inset-0 h-full w-full object-cover" />
+      {/* Video Stream or Selected Image */}
+      {mode === 'camera' ? (
+        <video ref={videoRef} autoPlay playsInline muted className="absolute inset-0 h-full w-full object-cover" />
+      ) : selectedImage ? (
+        <img src={selectedImage} alt="Selected" className="absolute inset-0 h-full w-full object-cover" />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900" />
+      )}
 
       {/* Hidden canvas for capture */}
       <canvas ref={canvasRef} className="hidden" />
+
+      {/* Hidden file input */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFileSelect}
+        className="hidden"
+      />
 
       {/* Overlay UI */}
       <div className="absolute inset-0 flex flex-col">
@@ -135,25 +197,81 @@ export default function CameraLandingPage() {
             <Sparkles className="h-6 w-6 text-primary" />
             <h1 className="text-xl font-bold text-white">Shine Skin Collective</h1>
           </div>
+          
+          {/* Mode Toggle */}
+          <div className="flex gap-2">
+            <Button
+              variant={mode === 'camera' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => {
+                setMode('camera')
+                setSelectedImage(null)
+                if (fileInputRef.current) fileInputRef.current.value = ''
+              }}
+              className="text-white"
+            >
+              <Camera className="h-4 w-4 mr-2" />
+              Camera
+            </Button>
+            <Button
+              variant={mode === 'upload' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => {
+                setMode('upload')
+                fileInputRef.current?.click()
+              }}
+              className="text-white"
+            >
+              <Upload className="h-4 w-4 mr-2" />
+              Upload
+            </Button>
+          </div>
         </div>
 
         {/* Center Guide */}
         <div className="flex flex-1 items-center justify-center p-6">
           <div className="relative">
-            {/* Face guide overlay */}
-            <div className="relative h-80 w-80 rounded-full border-4 border-primary/50 shadow-[0_0_40px_rgba(168,85,247,0.3)]">
-              <div className="absolute -left-2 -top-2 h-8 w-8 rounded-full border-4 border-primary" />
-              <div className="absolute -right-2 -top-2 h-8 w-8 rounded-full border-4 border-primary" />
-              <div className="absolute -bottom-2 -left-2 h-8 w-8 rounded-full border-4 border-primary" />
-              <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full border-4 border-primary" />
-            </div>
+            {mode === 'camera' ? (
+              <>
+                {/* Face guide overlay for camera */}
+                <div className="relative h-80 w-80 rounded-full border-4 border-primary/50 shadow-[0_0_40px_rgba(168,85,247,0.3)]">
+                  <div className="absolute -left-2 -top-2 h-8 w-8 rounded-full border-4 border-primary" />
+                  <div className="absolute -right-2 -top-2 h-8 w-8 rounded-full border-4 border-primary" />
+                  <div className="absolute -bottom-2 -left-2 h-8 w-8 rounded-full border-4 border-primary" />
+                  <div className="absolute -bottom-2 -right-2 h-8 w-8 rounded-full border-4 border-primary" />
+                </div>
 
-            {/* Instructions */}
-            {!isCapturing && (
-              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-center">
-                <p className="text-sm font-medium text-white/90">Position your face in the circle</p>
-              </div>
-            )}
+                {/* Instructions */}
+                {!isCapturing && (
+                  <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-center">
+                    <p className="text-sm font-medium text-white/90">Position your face in the circle</p>
+                  </div>
+                )}
+              </>
+            ) : mode === 'upload' && !selectedImage ? (
+              <>
+                {/* Upload area */}
+                <div className="relative h-80 w-80 rounded-full border-4 border-dashed border-primary/50 shadow-[0_0_40px_rgba(168,85,247,0.3)] flex items-center justify-center">
+                  <div className="text-center">
+                    <ImageIcon className="h-16 w-16 text-primary/70 mx-auto mb-4" />
+                    <p className="text-sm font-medium text-white/90">Select a photo to analyze</p>
+                  </div>
+                </div>
+              </>
+            ) : selectedImage ? (
+              <>
+                {/* Selected image preview */}
+                <div className="relative h-80 w-80 rounded-full border-4 border-primary/50 shadow-[0_0_40px_rgba(168,85,247,0.3)] overflow-hidden">
+                  <img src={selectedImage} alt="Selected" className="h-full w-full object-cover" />
+                  <button
+                    onClick={clearSelectedImage}
+                    className="absolute top-2 right-2 h-8 w-8 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-black/70"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              </>
+            ) : null}
           </div>
         </div>
 
@@ -161,7 +279,7 @@ export default function CameraLandingPage() {
         <div className="relative z-10 flex flex-col items-center gap-4 p-8 pb-12">
           {error && <div className="rounded-lg bg-destructive/10 px-4 py-2 text-sm text-destructive">{error}</div>}
 
-          {detectionSupported && (
+          {mode === 'camera' && detectionSupported && (
             <div className="flex items-center gap-2 text-xs text-white/80">
               <span
                 className={
@@ -173,22 +291,63 @@ export default function CameraLandingPage() {
             </div>
           )}
 
-          <Button
-            size="lg"
-            onClick={captureImage}
-            disabled={isCapturing || !stream}
-            className="h-20 w-20 rounded-full bg-primary p-0 shadow-lg hover:bg-primary/90 disabled:opacity-50"
-          >
-            {isCapturing ? (
-              <Loader2 className="h-8 w-8 animate-spin text-white" />
-            ) : (
-              <Camera className="h-8 w-8 text-white" />
-            )}
-          </Button>
+          {mode === 'camera' ? (
+            <>
+              <Button
+                size="lg"
+                onClick={captureImage}
+                disabled={isCapturing || !stream}
+                className="h-20 w-20 rounded-full bg-primary p-0 shadow-lg hover:bg-primary/90 disabled:opacity-50"
+              >
+                {isCapturing ? (
+                  <Loader2 className="h-8 w-8 animate-spin text-white" />
+                ) : (
+                  <Camera className="h-8 w-8 text-white" />
+                )}
+              </Button>
 
-          <p className="text-center text-sm text-white/70">
-            {isCapturing ? "Analyzing your skin..." : "Tap to capture and analyze"}
-          </p>
+              <p className="text-center text-sm text-white/70">
+                {isCapturing ? "Analyzing your skin..." : "Tap to capture and analyze"}
+              </p>
+            </>
+          ) : mode === 'upload' ? (
+            <>
+              {!selectedImage ? (
+                <>
+                  <Button
+                    size="lg"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="h-20 w-20 rounded-full bg-primary p-0 shadow-lg hover:bg-primary/90"
+                  >
+                    <Upload className="h-8 w-8 text-white" />
+                  </Button>
+
+                  <p className="text-center text-sm text-white/70">
+                    Tap to select a photo
+                  </p>
+                </>
+              ) : (
+                <>
+                  <Button
+                    size="lg"
+                    onClick={handleUploadImage}
+                    disabled={isUploading}
+                    className="h-20 w-20 rounded-full bg-primary p-0 shadow-lg hover:bg-primary/90 disabled:opacity-50"
+                  >
+                    {isUploading ? (
+                      <Loader2 className="h-8 w-8 animate-spin text-white" />
+                    ) : (
+                      <Sparkles className="h-8 w-8 text-white" />
+                    )}
+                  </Button>
+
+                  <p className="text-center text-sm text-white/70">
+                    {isUploading ? "Analyzing your skin..." : "Tap to analyze this photo"}
+                  </p>
+                </>
+              )}
+            </>
+          ) : null}
         </div>
       </div>
 

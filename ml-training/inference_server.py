@@ -12,6 +12,7 @@ from torchvision import transforms
 from PIL import Image
 import io
 import os
+import numpy as np
 
 from model_architecture import create_model
 import mediapipe as mp
@@ -24,7 +25,10 @@ class InferenceResponse(BaseModel):
 
 def load_model(checkpoint_path: str, device: str = "cpu"):
     checkpoint = torch.load(checkpoint_path, map_location=device)
-    model = create_model("resnet50", pretrained=False)
+    # Get model name from checkpoint config, default to efficientnet-b0
+    model_name = checkpoint.get("config", {}).get("model_name", "efficientnet-b0")
+    print(f"Loading model: {model_name}")
+    model = create_model(model_name, pretrained=False)
     model.load_state_dict(checkpoint["model_state_dict"], strict=False)
     model.eval()
     model.to(device)
@@ -111,7 +115,6 @@ async def infer(image: UploadFile = File(...)):
 
     # If landmarks found, compute simple polygon ROIs and run per-ROI inference
     try:
-        import numpy as np
         if results.multi_face_landmarks:
             h, w = img_np.shape[:2]
             lm = results.multi_face_landmarks[0].landmark

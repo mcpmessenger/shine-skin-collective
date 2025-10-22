@@ -4,9 +4,9 @@ import { embedAnalysisConcerns } from "@/lib/embeddings"
 import { upsert } from "@/lib/vector-index"
 import { getSupabaseAdmin } from "@/lib/supabase"
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const { id } = params
+    const { id } = await params
 
     if (!id || id.trim() === "") {
       return NextResponse.json({ error: "Analysis ID is required" }, { status: 400 })

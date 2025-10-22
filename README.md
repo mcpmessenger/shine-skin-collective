@@ -12,8 +12,9 @@ Shine Skin Collective is an advanced skincare analysis platform that combines cu
 
 - **Multi-label Skin Classification**: Detects 7 primary skin conditions (acne, aging, fine lines, hyperpigmentation, pore size, redness, textured skin)
 - **Severity Assessment**: Predicts severity levels for each detected condition
-- **Synthetic Dataset**: 3000+ high-quality synthetic images with comprehensive annotations
+- **Dual Input Methods**: Camera capture OR photo upload from gallery
 - **Real-time Analysis**: Fast inference capabilities with <100ms processing time
+- **Synthetic Dataset**: 3000+ high-quality synthetic images with comprehensive annotations
 - **Modern UI/UX**: Built with Next.js, React, and Tailwind CSS
 - **RESTful API**: Easy integration for external applications
 - **Comprehensive Documentation**: Detailed guides for developers and ML engineers
@@ -41,9 +42,9 @@ shine-skin-collective/
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
-- Python 3.8+ (for ML model development)
+- Python 3.11 (for ML backend)
 
-### Installation
+### Frontend Setup
 
 1. Clone the repository:
 ```bash
@@ -51,14 +52,14 @@ git clone https://github.com/mcpmessenger/shine-skin-collective.git
 cd shine-skin-collective
 ```
 
-2. Install dependencies:
+2. Install frontend dependencies:
 ```bash
 npm install
 # or
 yarn install
 ```
 
-3. Run the development server:
+3. Run the Next.js development server:
 ```bash
 npm run dev
 # or
@@ -66,6 +67,49 @@ yarn dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Using the App
+
+**Camera Mode** (Default):
+- Position your face in the circle
+- Real-time face detection indicator
+- Tap the camera button to capture and analyze
+
+**Photo Upload Mode** (New!):
+- Click the "Upload" button in the top-right
+- Select a photo from your device gallery
+- Preview the selected image
+- Tap "Analyze" to process the photo
+
+Both modes provide the same AI-powered skin analysis with 7 skin conditions and severity levels!
+
+### Backend Setup (ML Inference Server)
+
+1. Install Python dependencies:
+```bash
+cd ml-training
+pip install -r requirements.txt
+```
+
+2. Start the FastAPI backend server:
+```bash
+# Option 1: Use the startup script (Windows)
+.\start_backend.bat
+
+# Option 2: Manual start
+cd ml-training
+python inference_server.py
+```
+
+3. The backend runs on [http://localhost:8000](http://localhost:8000)
+
+4. Verify it's working:
+```bash
+curl http://localhost:8000/health
+# Should return: {"status":"ok"}
+```
+
+📖 **Detailed Backend Instructions**: See [START_BACKEND.md](START_BACKEND.md) for complete documentation
 
 ## 📚 Documentation
 

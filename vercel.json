@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/infer.py": {
+      "runtime": "python3.9"
+    }
+  },
+  "env": {
+    "PYTHONPATH": "ml-training"
+  }
+}
